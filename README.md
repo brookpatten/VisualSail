@@ -1,9 +1,10 @@
 # VisualSail
-VisualSail
 
 ![visual sail screenshot](https://raw.githubusercontent.com/brookpatten/VisualSail/master/visualsail.jpg)
 
 Sailing GPS Replay Analysis
+
+[Read more on my blog](http://blog.mrgibbs.io/visualsail-now-free/)
 
 This is a (crusty) windows application that I wrote and sold circa 2005.  
 It was written before I knew what I was doing in terms of SOLID, unit testing, UI design.... I could go on.
