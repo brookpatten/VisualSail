@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 
 using AmphibianSoftware.VisualSail.Data;
-using AmphibianSoftware.VisualSail.PostBuild;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -16,7 +15,6 @@ namespace AmphibianSoftware.VisualSail.Library
 {
     public abstract class CameraMan
     {
-        [DoNotObfuscate()]
         public enum PhotoDisplayMode { Disabled, SelectedBoat, BoatsInView, All };
 
         public int SelectedBoat;

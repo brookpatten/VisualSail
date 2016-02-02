@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using AmphibianSoftware.VisualSail.PostBuild;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -29,7 +28,6 @@ namespace AmphibianSoftware.VisualSail.Library
         }
     public class Sail
     {
-        [DoNotObfuscate()]
         public enum SailType{Main,Jib,Spinnaker}
         private SailType _sailType;
         private float _height;

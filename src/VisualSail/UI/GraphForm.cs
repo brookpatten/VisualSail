@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using System.Threading;
 
 using AmphibianSoftware.VisualSail.Data.Statistics;
-using AmphibianSoftware.VisualSail.PostBuild;
 
 using ZedGraph;
 using WeifenLuo.WinFormsUI.Docking;
@@ -25,7 +24,6 @@ namespace AmphibianSoftware.VisualSail.UI
         private static int _defaultAutoScrollSize = 120;
         private int? _autoScrollSize = _defaultAutoScrollSize;
         private Thread _painter;
-        [DoNotObfuscate()]
         private enum StatisticGroupType { Boat, Leg, Tack };
         private Replay _replay;
         private string _statisticName;

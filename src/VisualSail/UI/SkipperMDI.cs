@@ -218,14 +218,10 @@ namespace AmphibianSoftware.VisualSail.UI
             }
             catch (Exception ex)
             {
-#if NOLICENSE
-                throw;
-#else
                 ConfigureMenu(false);
                 _loadedFile = string.Empty;
                 MessageBox.Show("A problem occured loading the file."+Environment.NewLine + ex.Message);
                 ShowGettingStarted();
-#endif
             }
             finally
             {

@@ -4,15 +4,11 @@ using System.Linq;
 using System.Text;
 
 using AmphibianSoftware.VisualSail.Data.Statistics.Calculator;
-using AmphibianSoftware.VisualSail.PostBuild;
 
 namespace AmphibianSoftware.VisualSail.Data.Statistics
 {
-    [DoNotObfuscate()]
     public enum StatisticType { distance, angle, speed, other };
-    [DoNotObfuscate()]
     public enum StatisticUnitType { metric, standard };
-    [DoNotObfuscate()]
     public enum StatisticUnit { yards, meters, miles, kilometers, degrees, kmh, mph, other, knot };
     public abstract class Statistic<T>
     {

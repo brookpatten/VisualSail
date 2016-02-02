@@ -10,13 +10,11 @@ using System.IO;
 using System.Threading;
 
 using AmphibianSoftware.VisualSail.Data;
-using AmphibianSoftware.VisualSail.PostBuild;
 
 namespace AmphibianSoftware.VisualSail.UI.Controls
 {
     public partial class LakeResizeControl : UserControl
     {
-        [DoNotObfuscate()]
         private enum SelectedCorner {TopLeft,TopRight,BottomLeft,BottomRight};
         private Lake _lake;
         private bool _mouseDown;

@@ -15,7 +15,6 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 
 using AmphibianSoftware.VisualSail.Data;
-using AmphibianSoftware.Video;
 using AmphibianSoftware.VisualSail.Library;
 using AmphibianSoftware.VisualSail.Data.Statistics;
 
@@ -50,7 +49,6 @@ namespace AmphibianSoftware.VisualSail.UI
         //xna stuff
         private Game _game;
         private BoundingBox _worldBounds;
-        private XnaAviWriter _xnaAviWriter;
         private PrimitiveLine _line;
         private VertexPositionColor[] _gridLines;
         private VertexPositionTexture[] _skybox;
@@ -161,7 +159,7 @@ namespace AmphibianSoftware.VisualSail.UI
             _mouseLeftTexture = _content.Load<Texture2D>(ContentHelper.StaticContentPath + "mouse-left");
             _mouseRightTexture = _content.Load<Texture2D>(ContentHelper.StaticContentPath + "mouse-right");
 
-            _lakeTextureEffect = new BasicEffect(_device, null);
+            _lakeTextureEffect = new BasicEffect(_device);
             if (!File.Exists(ContentHelper.DynamicContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West)))
             {
                 try
@@ -195,7 +193,7 @@ namespace AmphibianSoftware.VisualSail.UI
                 _lakeTextureAvailible = false;
             }
 
-            _skyBoxEffect = new BasicEffect(_device, null);
+            _skyBoxEffect = new BasicEffect(_device);
             _skyBoxEffect.Texture = _skyTexture;
             _skyBoxEffect.TextureEnabled = true;
             _skyBoxEffect.FogEnabled = true;
@@ -211,7 +209,7 @@ namespace AmphibianSoftware.VisualSail.UI
             //effect = new BasicEffect(device, null);
             //effect.EnableDefaultLighting();
 
-            _instruments = new BasicEffect(_device, null);
+            _instruments = new BasicEffect(_device);
             _instruments.VertexColorEnabled = true;
 
             //text = new BasicEffect(device, null);
@@ -223,7 +221,7 @@ namespace AmphibianSoftware.VisualSail.UI
             //_photos = Photo.FindInDateRange(this.Race.LocalCountdownStart, this.Race.LocalEnd);
             _bouyModel = _content.Load<Model>(ContentHelper.StaticContentPath + "bouy");
             _boatModel = _content.Load<Model>(ContentHelper.StaticContentPath + "ship");
-            _sailEffect = new BasicEffect(_device, null);
+            _sailEffect = new BasicEffect(_device);
             _sailEffect.EnableDefaultLighting();
             //System.Drawing.Color c=System.Drawing.Color.FromArgb(_boatData.Color);
             //_color = new Vector3((float)c.R / 255.0f, (float)c.G / 255.0f, (float)c.B / 255.0f);
@@ -231,7 +229,7 @@ namespace AmphibianSoftware.VisualSail.UI
             _sailEffect.DirectionalLight0.SpecularColor = new Vector3(1, 1, 1);
             //sailEffect.AmbientLightColor = _color;
             _sailEffect.VertexColorEnabled = true;
-            _hudEffect = new BasicEffect(_device, null);
+            _hudEffect = new BasicEffect(_device);
             _hudEffect.VertexColorEnabled = true;
         }
         private void SetUpGridLines()
@@ -461,29 +459,9 @@ namespace AmphibianSoftware.VisualSail.UI
                                 vp.Record = RecorderState.Disabled;
                             }
                         }
-                        //make sure the recorder is ready to go
-                        if (_xnaAviWriter == null || !_xnaAviWriter.Recording)
-                        {
-                            try
-                            {
-                                _xnaAviWriter = new XnaAviWriter(_device);
-                                _xnaAviWriter.VideoInitialize(recordingViewport.RecordingPath, 25, recordingViewport.RecordingSize.Width, recordingViewport.RecordingSize.Height);
-                                RenderVideoTitle();
-                            }
-                            catch (Exception message)
-                            {
-                                MessageBox.Show("A problem occured while starting the recording." + Environment.NewLine + message.Message);
-                                recordingViewport.Record = RecorderState.Ready;
-                            }
-                        }
                     }
                     else
                     {
-                        if (_xnaAviWriter != null && _xnaAviWriter.Recording)
-                        {
-                            _xnaAviWriter.Close();
-                            _xnaAviWriter = null;
-                        }
                         foreach (IViewPort vp in _viewports.Keys)
                         {
                             vp.RecordingPath = null;
@@ -496,19 +474,6 @@ namespace AmphibianSoftware.VisualSail.UI
                         Render(vp);
                         if (vp.ScreenshotPath != null && vp.RecordingSize.Width > 0 && vp.RecordingSize.Height > 0)
                         {
-                            try
-                            {
-                                if (_xnaAviWriter == null)
-                                {
-                                    _xnaAviWriter = new XnaAviWriter(_device);
-                                }
-                                _xnaAviWriter.ScreenShot(vp.ScreenshotPath, vp.RecordingSize.Width, vp.RecordingSize.Height);
-                                _xnaAviWriter = null;
-                            }
-                            catch
-                            {
-                                MessageBox.Show("The image could not be captured to the specified file");
-                            }
                             vp.ScreenshotPath = null;
                         }
                     }
@@ -850,18 +815,6 @@ namespace AmphibianSoftware.VisualSail.UI
                     //this is hacky, but i can't find a better way to prevent or catch this issue
                 }
 
-                if (target.Record == RecorderState.Recording && _xnaAviWriter != null && _xnaAviWriter.Recording)
-                {
-                    try
-                    {
-                        _xnaAviWriter.AddFrame();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("The video codec or compression you selected is not compatible with VisualSail");
-                        target.Record = RecorderState.Ready;
-                    }
-                }
             }
         }
         public void DrawHUD(ReplayBoat boat, GraphicsDevice device, XnaCameraMan cameraMan, DateTime time, float coordinateDivisor)
@@ -1170,7 +1123,7 @@ namespace AmphibianSoftware.VisualSail.UI
             TextureInformation ti = Texture2D.GetTextureInformation(texturePath);
             int bigTexture = ti.Width >= ti.Height ? ti.Width : ti.Height;
             int smallDevice = device.GraphicsDeviceCapabilities.MaxTextureWidth <= device.GraphicsDeviceCapabilities.MaxTextureHeight ? device.GraphicsDeviceCapabilities.MaxTextureWidth : device.GraphicsDeviceCapabilities.MaxTextureHeight;
-
+            
             int desiredSize = bigTexture >= smallDevice ? smallDevice : bigTexture;
 
 
@@ -1603,82 +1556,6 @@ namespace AmphibianSoftware.VisualSail.UI
         private Color DrawingToXnaColor(System.Drawing.Color from)
         {
             return new Color(from.R, from.G, from.B);
-        }
-        private void RenderVideoTitle()
-        {
-            System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(_xnaAviWriter.Buffer);
-            int width = _xnaAviWriter.Buffer.Width;
-            int height = _xnaAviWriter.Buffer.Height;
-            g.FillRectangle(System.Drawing.Brushes.Black, 0, 0, width, height);
-
-            float titleFontSize = 14;
-            int padding = 5;
-            System.Drawing.Font italic = new System.Drawing.Font("Arial", titleFontSize, System.Drawing.FontStyle.Italic);
-            System.Drawing.Font bold = new System.Drawing.Font("Arial", titleFontSize, System.Drawing.FontStyle.Bold);
-            System.Drawing.Font regular = new System.Drawing.Font("Arial", titleFontSize, System.Drawing.FontStyle.Regular);
-            System.Drawing.SizeF visualSize = g.MeasureString("visual", italic);
-            System.Drawing.SizeF sailSize = g.MeasureString("Sail", bold);
-            System.Drawing.SizeF dotComSize = g.MeasureString(".com", regular);
-            int titleOffset = (width - (int)(visualSize.Width + sailSize.Width + dotComSize.Width)) / 2;
-            g.DrawString("visual", italic, System.Drawing.Brushes.White, titleOffset, height - (visualSize.Height + padding));
-            g.DrawString("Sail", bold, System.Drawing.Brushes.White, titleOffset + visualSize.Width - padding, height - (visualSize.Height + padding));
-            g.DrawString(".com", regular, System.Drawing.Brushes.White, titleOffset + visualSize.Width + sailSize.Width - padding - padding, height - (visualSize.Height + padding));
-
-            int heightOffset = (int)((double)height * 0.4);
-
-            float raceNameFontSize = 30;
-            if (Replay.Race.Name != Race.DefaultName)
-            {
-                System.Drawing.Font raceNameFont = null;
-                System.Drawing.SizeF raceNameSize = new System.Drawing.SizeF();
-                do
-                {
-                    raceNameFont = new System.Drawing.Font("Arial", raceNameFontSize, System.Drawing.FontStyle.Regular);
-                    raceNameSize = g.MeasureString(Replay.Race.Name, raceNameFont);
-                    raceNameFontSize = raceNameFontSize - 2;
-                }
-                while ((raceNameSize.Width > width) && raceNameFontSize > 16f);
-                g.DrawString(Replay.Race.Name, raceNameFont, System.Drawing.Brushes.White, (width - (int)raceNameSize.Width) / 2, heightOffset);
-                heightOffset = heightOffset + (int)raceNameSize.Height + padding;
-            }
-
-            float lakeNameFontSize = raceNameFontSize / 2;
-            if (Replay.Race.Lake.Name != Lake.DefaultName)
-            {
-                System.Drawing.Font lakeNameFont = null;
-                System.Drawing.SizeF lakeNameSize = new System.Drawing.SizeF();
-                do
-                {
-                    lakeNameFont = new System.Drawing.Font("Arial", lakeNameFontSize, System.Drawing.FontStyle.Regular);
-                    lakeNameSize = g.MeasureString(Replay.Race.Lake.Name, lakeNameFont);
-                    lakeNameFontSize = lakeNameFontSize - 2;
-                }
-                while ((lakeNameSize.Width > width) && lakeNameFontSize > 16f);
-                g.DrawString(Replay.Race.Lake.Name, lakeNameFont, System.Drawing.Brushes.White, (width - (int)lakeNameSize.Width) / 2, heightOffset);
-                heightOffset = heightOffset + (int)lakeNameSize.Height + padding;
-            }
-
-            float raceDateFontSize = lakeNameFontSize;
-            System.Drawing.Font raceDateFont = null;
-            System.Drawing.SizeF raceDateSize = new System.Drawing.SizeF();
-            do
-            {
-                raceDateFont = new System.Drawing.Font("Arial", raceDateFontSize, System.Drawing.FontStyle.Regular);
-                raceDateSize = g.MeasureString(Replay.Race.LocalStart.ToShortDateString(), raceDateFont);
-                raceDateFontSize = raceDateFontSize - 2;
-            }
-            while ((raceDateSize.Width > width) && raceDateFontSize > 16f);
-            g.DrawString(Replay.Race.LocalStart.ToShortDateString(), raceDateFont, System.Drawing.Brushes.White, (width - (int)raceDateSize.Width) / 2, heightOffset);
-            heightOffset = heightOffset + (int)raceDateSize.Height + padding;
-
-            g.Flush();
-            _xnaAviWriter.CommitBufferChanges();
-            //record for 2 seconds
-            for (int i = 0; i < _xnaAviWriter.FrameRate * 2; i++)
-            {
-                _xnaAviWriter.RepeatBuffer();
-            }
-
         }
     }
 }

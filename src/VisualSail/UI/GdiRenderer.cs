@@ -12,7 +12,6 @@ using System.Drawing;
 using Microsoft.Xna.Framework;
 
 using AmphibianSoftware.VisualSail.Data;
-using AmphibianSoftware.Video;
 using AmphibianSoftware.VisualSail.Library;
 using AmphibianSoftware.VisualSail.Data.Statistics;
 

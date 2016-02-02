@@ -7,11 +7,9 @@ using System.IO;
 using System.Data;
 using System.Threading;
 
-using AmphibianSoftware.Video;
 using AmphibianSoftware.VisualSail.Library;
 using AmphibianSoftware.VisualSail.Data;
 using AmphibianSoftware.VisualSail.Data.Statistics;
-using AmphibianSoftware.VisualSail.PostBuild;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -21,7 +19,6 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace AmphibianSoftware.VisualSail.UI
 {
-    [DoNotObfuscate()]
     public enum InstrumentDrawing { Line, InwardArrow, OutwardArrow };
     public delegate void ShutdownViewPort(IViewPort vp);
     public class Replay:IDisposable /*: Microsoft.Xna.Framework.Game*/
