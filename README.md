@@ -1,6 +1,8 @@
 # VisualSail
 VisualSail
 
+![visual sail screenshot](https://raw.githubusercontent.com/brookpatten/VisualSail/master/visualsail.jpg)
+
 Sailing GPS Replay Analysis
 
 This is a (crusty) windows application that I wrote and sold circa 2005.  
