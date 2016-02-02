@@ -25,3 +25,5 @@ For all of its flaws (and there are many), I think it is still a useful applicat
 Hopefully I'll find the time to at least convert this to monogame to get rid of the xna assembly, and it would be nice to fix the satelite imagery too, but honestly I haven't touched it in years so no promises.
 
 PS: if you were one of the people that bought this back in the day, thanks for humoring me with my hobby and giving a college kid (at the time) some extra spending money.
+
+PPS: Sorry this is just a file import rather than full source control history.  I do not have time to stand up SVN (!?) to recover the backup, and even if I could the source tree is quite bloated with all sorts of tools, resources etc that would make the git repo quite onerous.  If you have a question about something ask and I'll try to answer (but remember, I wrote this 11 years ago)
