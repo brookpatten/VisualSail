@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SkipperDataSet" targetNamespace="http://AmphibianSoftware.com/SkipperDataSet.xsd" xmlns:mstns="http://AmphibianSoftware.com/SkipperDataSet.xsd" xmlns="http://AmphibianSoftware.com/SkipperDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SkipperDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="SkipperDataSet" msprop:Generator_DataSetName="SkipperDataSet" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Race" msprop:Generator_UserTableName="Race" msprop:Generator_RowDeletedName="RaceRowDeleted" msprop:Generator_RowChangedName="RaceRowChanged" msprop:Generator_RowClassName="RaceRow" msprop:Generator_RowChangingName="RaceRowChanging" msprop:Generator_RowEvArgName="RaceRowChangeEvent" msprop:Generator_RowEvHandlerName="RaceRowChangeEventHandler" msprop:Generator_TableClassName="RaceDataTable" msprop:Generator_TableVarName="tableRace" msprop:Generator_RowDeletingName="RaceRowDeleting" msprop:Generator_TablePropName="Race">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" />
+              <xs:element name="lake_id" msprop:Generator_UserColumnName="lake_id" msprop:Generator_ColumnPropNameInRow="lake_id" msprop:Generator_ColumnVarNameInTable="columnlake_id" msprop:Generator_ColumnPropNameInTable="lake_idColumn" type="xs:int" />
+              <xs:element name="course_id" msprop:Generator_UserColumnName="course_id" msprop:Generator_ColumnPropNameInRow="course_id" msprop:Generator_ColumnVarNameInTable="columncourse_id" msprop:Generator_ColumnPropNameInTable="course_idColumn" type="xs:int" />
+              <xs:element name="start" msprop:Generator_UserColumnName="start" msprop:Generator_ColumnPropNameInRow="start" msprop:Generator_ColumnVarNameInTable="columnstart" msprop:Generator_ColumnPropNameInTable="startColumn" type="xs:dateTime" />
+              <xs:element name="end" msprop:Generator_UserColumnName="end" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="end" msprop:Generator_ColumnPropNameInTable="endColumn" msprop:Generator_ColumnVarNameInTable="columnend" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="start_sequence_length" msprop:Generator_UserColumnName="start_sequence_length" msprop:nullValue="_null" msprop:Generator_ColumnVarNameInTable="columnstart_sequence_length" msprop:Generator_ColumnPropNameInTable="start_sequence_lengthColumn" msprop:Generator_ColumnPropNameInRow="start_sequence_length" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Lake" msprop:Generator_UserTableName="Lake" msprop:Generator_RowDeletedName="LakeRowDeleted" msprop:Generator_RowChangedName="LakeRowChanged" msprop:Generator_RowClassName="LakeRow" msprop:Generator_RowChangingName="LakeRowChanging" msprop:Generator_RowEvArgName="LakeRowChangeEvent" msprop:Generator_RowEvHandlerName="LakeRowChangeEventHandler" msprop:Generator_TableClassName="LakeDataTable" msprop:Generator_TableVarName="tableLake" msprop:Generator_RowDeletingName="LakeRowDeleting" msprop:Generator_TablePropName="Lake">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" />
+              <xs:element name="north" msprop:Generator_UserColumnName="north" msprop:Generator_ColumnPropNameInRow="north" msprop:Generator_ColumnVarNameInTable="columnnorth" msprop:Generator_ColumnPropNameInTable="northColumn" type="xs:double" />
+              <xs:element name="south" msprop:Generator_UserColumnName="south" msprop:Generator_ColumnPropNameInRow="south" msprop:Generator_ColumnVarNameInTable="columnsouth" msprop:Generator_ColumnPropNameInTable="southColumn" type="xs:double" />
+              <xs:element name="east" msprop:Generator_UserColumnName="east" msprop:Generator_ColumnPropNameInRow="east" msprop:Generator_ColumnVarNameInTable="columneast" msprop:Generator_ColumnPropNameInTable="eastColumn" type="xs:double" />
+              <xs:element name="west" msprop:Generator_UserColumnName="west" msprop:Generator_ColumnPropNameInRow="west" msprop:Generator_ColumnVarNameInTable="columnwest" msprop:Generator_ColumnPropNameInTable="westColumn" type="xs:double" />
+              <xs:element name="altitude" msprop:Generator_UserColumnName="altitude" msprop:Generator_ColumnPropNameInRow="altitude" msprop:Generator_ColumnVarNameInTable="columnaltitude" msprop:Generator_ColumnPropNameInTable="altitudeColumn" type="xs:double" />
+              <xs:element name="heightmap" msprop:Generator_UserColumnName="heightmap" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInRow="heightmap" msprop:Generator_ColumnPropNameInTable="heightmapColumn" msprop:Generator_ColumnVarNameInTable="columnheightmap" type="xs:string" minOccurs="0" />
+              <xs:element name="timezone" msprop:Generator_UserColumnName="timezone" msprop:nullValue="_null" msprop:Generator_ColumnVarNameInTable="columntimezone" msprop:Generator_ColumnPropNameInTable="timezoneColumn" msprop:Generator_ColumnPropNameInRow="timezone" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Boat" msprop:Generator_UserTableName="Boat" msprop:Generator_RowDeletedName="BoatRowDeleted" msprop:Generator_RowChangedName="BoatRowChanged" msprop:Generator_RowClassName="BoatRow" msprop:Generator_RowChangingName="BoatRowChanging" msprop:Generator_RowEvArgName="BoatRowChangeEvent" msprop:Generator_RowEvHandlerName="BoatRowChangeEventHandler" msprop:Generator_TableClassName="BoatDataTable" msprop:Generator_TableVarName="tableBoat" msprop:Generator_RowDeletingName="BoatRowDeleting" msprop:Generator_TablePropName="Boat">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:nullValue="_empty" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_ColumnPropNameInRow="name" type="xs:string" />
+              <xs:element name="number" msprop:Generator_UserColumnName="number" msprop:nullValue="_empty" msprop:Generator_ColumnVarNameInTable="columnnumber" msprop:Generator_ColumnPropNameInTable="numberColumn" msprop:Generator_ColumnPropNameInRow="number" type="xs:string" minOccurs="0" />
+              <xs:element name="color" msprop:Generator_UserColumnName="color" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInTable="colorColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="boattype_id" msprop:Generator_UserColumnName="boattype_id" msprop:Generator_ColumnPropNameInRow="boattype_id" msprop:Generator_ColumnVarNameInTable="columnboattype_id" msprop:Generator_ColumnPropNameInTable="boattype_idColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BoatType" msprop:Generator_UserTableName="BoatType" msprop:Generator_RowDeletedName="BoatTypeRowDeleted" msprop:Generator_RowChangedName="BoatTypeRowChanged" msprop:Generator_RowClassName="BoatTypeRow" msprop:Generator_RowChangingName="BoatTypeRowChanging" msprop:Generator_RowEvArgName="BoatTypeRowChangeEvent" msprop:Generator_RowEvHandlerName="BoatTypeRowChangeEventHandler" msprop:Generator_TableClassName="BoatTypeDataTable" msprop:Generator_TableVarName="tableBoatType" msprop:Generator_RowDeletingName="BoatTypeRowDeleting" msprop:Generator_TablePropName="BoatType">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Course" msprop:Generator_UserTableName="Course" msprop:Generator_RowDeletedName="CourseRowDeleted" msprop:Generator_RowChangedName="CourseRowChanged" msprop:Generator_RowClassName="CourseRow" msprop:Generator_RowChangingName="CourseRowChanging" msprop:Generator_RowEvArgName="CourseRowChangeEvent" msprop:Generator_RowEvHandlerName="CourseRowChangeEventHandler" msprop:Generator_TableClassName="CourseDataTable" msprop:Generator_TableVarName="tableCourse" msprop:Generator_RowDeletingName="CourseRowDeleting" msprop:Generator_TablePropName="Course">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="date" msprop:Generator_UserColumnName="date" msprop:Generator_ColumnPropNameInRow="date" msprop:Generator_ColumnVarNameInTable="columndate" msprop:Generator_ColumnPropNameInTable="dateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lake_id" msprop:Generator_UserColumnName="lake_id" msprop:Generator_ColumnPropNameInRow="lake_id" msprop:Generator_ColumnVarNameInTable="columnlake_id" msprop:Generator_ColumnPropNameInTable="lake_idColumn" type="xs:int" />
+              <xs:element name="wind_direction_type" msprop:Generator_UserColumnName="wind_direction_type" msprop:nullValue="_null" msprop:Generator_ColumnVarNameInTable="columnwind_direction_type" msprop:Generator_ColumnPropNameInTable="wind_direction_typeColumn" msprop:Generator_ColumnPropNameInRow="wind_direction_type" type="xs:string" minOccurs="0" />
+              <xs:element name="manual_wind_direction" msprop:Generator_UserColumnName="manual_wind_direction" msprop:Generator_ColumnPropNameInRow="manual_wind_direction" msprop:Generator_ColumnVarNameInTable="columnmanual_wind_direction" msprop:Generator_ColumnPropNameInTable="manual_wind_directionColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="wind_direction_from_mark_id" msprop:Generator_UserColumnName="wind_direction_from_mark_id" msprop:Generator_ColumnPropNameInRow="wind_direction_from_mark_id" msprop:Generator_ColumnVarNameInTable="columnwind_direction_from_mark_id" msprop:Generator_ColumnPropNameInTable="wind_direction_from_mark_idColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="wind_direction_to_mark_id" msprop:Generator_UserColumnName="wind_direction_to_mark_id" msprop:Generator_ColumnPropNameInRow="wind_direction_to_mark_id" msprop:Generator_ColumnVarNameInTable="columnwind_direction_to_mark_id" msprop:Generator_ColumnPropNameInTable="wind_direction_to_mark_idColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Bouy" msprop:Generator_UserTableName="Bouy" msprop:Generator_RowDeletedName="BouyRowDeleted" msprop:Generator_RowChangedName="BouyRowChanged" msprop:Generator_RowClassName="BouyRow" msprop:Generator_RowChangingName="BouyRowChanging" msprop:Generator_RowEvArgName="BouyRowChangeEvent" msprop:Generator_RowEvHandlerName="BouyRowChangeEventHandler" msprop:Generator_TableClassName="BouyDataTable" msprop:Generator_TableVarName="tableBouy" msprop:Generator_RowDeletingName="BouyRowDeleting" msprop:Generator_TablePropName="Bouy">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="mark_id" msprop:Generator_UserColumnName="mark_id" msprop:Generator_ColumnPropNameInRow="mark_id" msprop:Generator_ColumnVarNameInTable="columnmark_id" msprop:Generator_ColumnPropNameInTable="mark_idColumn" type="xs:int" />
+              <xs:element name="latitude" msprop:Generator_UserColumnName="latitude" msprop:Generator_ColumnVarNameInTable="columnlatitude" msprop:Generator_ColumnPropNameInRow="latitude" msprop:Generator_ColumnPropNameInTable="latitudeColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="longitude" msprop:Generator_UserColumnName="longitude" msprop:Generator_ColumnVarNameInTable="columnlongitude" msprop:Generator_ColumnPropNameInRow="longitude" msprop:Generator_ColumnPropNameInTable="longitudeColumn" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RaceBoat" msprop:Generator_UserTableName="RaceBoat" msprop:Generator_RowDeletedName="RaceBoatRowDeleted" msprop:Generator_RowChangedName="RaceBoatRowChanged" msprop:Generator_RowClassName="RaceBoatRow" msprop:Generator_RowChangingName="RaceBoatRowChanging" msprop:Generator_RowEvArgName="RaceBoatRowChangeEvent" msprop:Generator_RowEvHandlerName="RaceBoatRowChangeEventHandler" msprop:Generator_TableClassName="RaceBoatDataTable" msprop:Generator_TableVarName="tableRaceBoat" msprop:Generator_RowDeletingName="RaceBoatRowDeleting" msprop:Generator_TablePropName="RaceBoat">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="race_id" msprop:Generator_UserColumnName="race_id" msprop:Generator_ColumnPropNameInRow="race_id" msprop:Generator_ColumnVarNameInTable="columnrace_id" msprop:Generator_ColumnPropNameInTable="race_idColumn" type="xs:int" />
+              <xs:element name="boat_id" msprop:Generator_UserColumnName="boat_id" msprop:Generator_ColumnPropNameInRow="boat_id" msprop:Generator_ColumnVarNameInTable="columnboat_id" msprop:Generator_ColumnPropNameInTable="boat_idColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SensorFile" msprop:Generator_UserTableName="SensorFile" msprop:Generator_RowDeletedName="SensorFileRowDeleted" msprop:Generator_RowChangedName="SensorFileRowChanged" msprop:Generator_RowClassName="SensorFileRow" msprop:Generator_RowChangingName="SensorFileRowChanging" msprop:Generator_RowEvArgName="SensorFileRowChangeEvent" msprop:Generator_RowEvHandlerName="SensorFileRowChangeEventHandler" msprop:Generator_TableClassName="SensorFileDataTable" msprop:Generator_TableVarName="tableSensorFile" msprop:Generator_RowDeletingName="SensorFileRowDeleting" msprop:Generator_TablePropName="SensorFile">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="type" msprop:Generator_UserColumnName="type" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInTable="typeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="loaded" msprop:Generator_UserColumnName="loaded" msprop:Generator_ColumnPropNameInRow="loaded" msprop:Generator_ColumnVarNameInTable="columnloaded" msprop:Generator_ColumnPropNameInTable="loadedColumn" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BoatFile" msprop:Generator_UserTableName="BoatFile" msprop:Generator_RowDeletedName="BoatFileRowDeleted" msprop:Generator_RowChangedName="BoatFileRowChanged" msprop:Generator_RowClassName="BoatFileRow" msprop:Generator_RowChangingName="BoatFileRowChanging" msprop:Generator_RowEvArgName="BoatFileRowChangeEvent" msprop:Generator_RowEvHandlerName="BoatFileRowChangeEventHandler" msprop:Generator_TableClassName="BoatFileDataTable" msprop:Generator_TableVarName="tableBoatFile" msprop:Generator_RowDeletingName="BoatFileRowDeleting" msprop:Generator_TablePropName="BoatFile">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="boat_id" msprop:Generator_UserColumnName="boat_id" msprop:Generator_ColumnPropNameInRow="boat_id" msprop:Generator_ColumnVarNameInTable="columnboat_id" msprop:Generator_ColumnPropNameInTable="boat_idColumn" type="xs:int" />
+              <xs:element name="sensorfile_id" msprop:Generator_UserColumnName="sensorfile_id" msprop:Generator_ColumnPropNameInRow="sensorfile_id" msprop:Generator_ColumnVarNameInTable="columnsensorfile_id" msprop:Generator_ColumnPropNameInTable="sensorfile_idColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SensorReadings" msprop:Generator_UserTableName="SensorReadings" msprop:Generator_RowDeletedName="SensorReadingsRowDeleted" msprop:Generator_RowChangedName="SensorReadingsRowChanged" msprop:Generator_RowClassName="SensorReadingsRow" msprop:Generator_RowChangingName="SensorReadingsRowChanging" msprop:Generator_RowEvArgName="SensorReadingsRowChangeEvent" msprop:Generator_RowEvHandlerName="SensorReadingsRowChangeEventHandler" msprop:Generator_TableClassName="SensorReadingsDataTable" msprop:Generator_TableVarName="tableSensorReadings" msprop:Generator_RowDeletingName="SensorReadingsRowDeleting" msprop:Generator_TablePropName="SensorReadings">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="sensorfile_id" msprop:Generator_UserColumnName="sensorfile_id" msprop:Generator_ColumnPropNameInRow="sensorfile_id" msprop:Generator_ColumnVarNameInTable="columnsensorfile_id" msprop:Generator_ColumnPropNameInTable="sensorfile_idColumn" type="xs:int" />
+              <xs:element name="datetime" msprop:Generator_UserColumnName="datetime" msprop:Generator_ColumnPropNameInRow="datetime" msprop:Generator_ColumnVarNameInTable="columndatetime" msprop:Generator_ColumnPropNameInTable="datetimeColumn" type="xs:dateTime" />
+              <xs:element name="latitude" msprop:Generator_UserColumnName="latitude" msprop:Generator_ColumnPropNameInRow="latitude" msprop:Generator_ColumnVarNameInTable="columnlatitude" msprop:Generator_ColumnPropNameInTable="latitudeColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="longitude" msprop:Generator_UserColumnName="longitude" msprop:Generator_ColumnPropNameInRow="longitude" msprop:Generator_ColumnVarNameInTable="columnlongitude" msprop:Generator_ColumnPropNameInTable="longitudeColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="altitude" msprop:Generator_UserColumnName="altitude" msprop:Generator_ColumnPropNameInRow="altitude" msprop:Generator_ColumnVarNameInTable="columnaltitude" msprop:Generator_ColumnPropNameInTable="altitudeColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="speed" msprop:Generator_UserColumnName="speed" msprop:Generator_ColumnPropNameInRow="speed" msprop:Generator_ColumnVarNameInTable="columnspeed" msprop:Generator_ColumnPropNameInTable="speedColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="heading" msprop:Generator_UserColumnName="heading" msprop:Generator_ColumnPropNameInRow="heading" msprop:Generator_ColumnVarNameInTable="columnheading" msprop:Generator_ColumnPropNameInTable="headingColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="depth" msprop:Generator_UserColumnName="depth" msprop:Generator_ColumnPropNameInRow="depth" msprop:Generator_ColumnVarNameInTable="columndepth" msprop:Generator_ColumnPropNameInTable="depthColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="temperature" msprop:Generator_UserColumnName="temperature" msprop:Generator_ColumnPropNameInRow="temperature" msprop:Generator_ColumnVarNameInTable="columntemperature" msprop:Generator_ColumnPropNameInTable="temperatureColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="waterspeed" msprop:Generator_UserColumnName="waterspeed" msprop:Generator_ColumnPropNameInRow="waterspeed" msprop:Generator_ColumnVarNameInTable="columnwaterspeed" msprop:Generator_ColumnPropNameInTable="waterspeedColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="apparantwinddirection" msprop:Generator_UserColumnName="apparantwinddirection" msprop:Generator_ColumnPropNameInRow="apparantwinddirection" msprop:Generator_ColumnVarNameInTable="columnapparantwinddirection" msprop:Generator_ColumnPropNameInTable="apparantwinddirectionColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="apparantwindspeed" msprop:Generator_UserColumnName="apparantwindspeed" msprop:Generator_ColumnPropNameInRow="apparantwindspeed" msprop:Generator_ColumnVarNameInTable="columnapparantwindspeed" msprop:Generator_ColumnPropNameInTable="apparantwindspeedColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="truewinddirection" msprop:Generator_UserColumnName="truewinddirection" msprop:Generator_ColumnPropNameInRow="truewinddirection" msprop:Generator_ColumnVarNameInTable="columntruewinddirection" msprop:Generator_ColumnPropNameInTable="truewinddirectionColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="truewindspeed" msprop:Generator_UserColumnName="truewindspeed" msprop:Generator_ColumnPropNameInRow="truewindspeed" msprop:Generator_ColumnVarNameInTable="columntruewindspeed" msprop:Generator_ColumnPropNameInTable="truewindspeedColumn" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Mark" msprop:Generator_UserTableName="Mark" msprop:Generator_RowDeletedName="MarkRowDeleted" msprop:Generator_RowChangedName="MarkRowChanged" msprop:Generator_RowClassName="MarkRow" msprop:Generator_RowChangingName="MarkRowChanging" msprop:Generator_RowEvArgName="MarkRowChangeEvent" msprop:Generator_RowEvHandlerName="MarkRowChangeEventHandler" msprop:Generator_TableClassName="MarkDataTable" msprop:Generator_TableVarName="tableMark" msprop:Generator_RowDeletingName="MarkRowDeleting" msprop:Generator_TablePropName="Mark">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="marktype" msprop:Generator_UserColumnName="marktype" msprop:Generator_ColumnPropNameInRow="marktype" msprop:Generator_ColumnVarNameInTable="columnmarktype" msprop:Generator_ColumnPropNameInTable="marktypeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="course_id" msprop:Generator_UserColumnName="course_id" msprop:Generator_ColumnPropNameInRow="course_id" msprop:Generator_ColumnVarNameInTable="columncourse_id" msprop:Generator_ColumnPropNameInTable="course_idColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CourseMarkOrder" msprop:Generator_UserTableName="CourseMarkOrder" msprop:Generator_RowDeletedName="CourseMarkOrderRowDeleted" msprop:Generator_RowChangedName="CourseMarkOrderRowChanged" msprop:Generator_RowClassName="CourseMarkOrderRow" msprop:Generator_RowChangingName="CourseMarkOrderRowChanging" msprop:Generator_RowEvArgName="CourseMarkOrderRowChangeEvent" msprop:Generator_RowEvHandlerName="CourseMarkOrderRowChangeEventHandler" msprop:Generator_TableClassName="CourseMarkOrderDataTable" msprop:Generator_TableVarName="tableCourseMarkOrder" msprop:Generator_RowDeletingName="CourseMarkOrderRowDeleting" msprop:Generator_TablePropName="CourseMarkOrder">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="course_id" msprop:Generator_UserColumnName="course_id" msprop:Generator_ColumnVarNameInTable="columncourse_id" msprop:Generator_ColumnPropNameInRow="course_id" msprop:Generator_ColumnPropNameInTable="course_idColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="mark_id" msprop:Generator_UserColumnName="mark_id" msprop:Generator_ColumnVarNameInTable="columnmark_id" msprop:Generator_ColumnPropNameInRow="mark_id" msprop:Generator_ColumnPropNameInTable="mark_idColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="order" msprop:Generator_UserColumnName="order" msprop:Generator_ColumnVarNameInTable="columnorder" msprop:Generator_ColumnPropNameInRow="order" msprop:Generator_ColumnPropNameInTable="orderColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Photo" msprop:Generator_UserTableName="Photo" msprop:Generator_RowDeletedName="PhotoRowDeleted" msprop:Generator_RowChangedName="PhotoRowChanged" msprop:Generator_RowClassName="PhotoRow" msprop:Generator_RowChangingName="PhotoRowChanging" msprop:Generator_RowEvArgName="PhotoRowChangeEvent" msprop:Generator_RowEvHandlerName="PhotoRowChangeEventHandler" msprop:Generator_TableClassName="PhotoDataTable" msprop:Generator_TableVarName="tablePhoto" msprop:Generator_RowDeletingName="PhotoRowDeleting" msprop:Generator_TablePropName="Photo">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" />
+              <xs:element name="caption" msprop:Generator_UserColumnName="caption" msprop:Generator_ColumnPropNameInRow="caption" msprop:Generator_ColumnVarNameInTable="columncaption" msprop:Generator_ColumnPropNameInTable="captionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="time" msprop:Generator_UserColumnName="time" msprop:Generator_ColumnPropNameInRow="time" msprop:Generator_ColumnVarNameInTable="columntime" msprop:Generator_ColumnPropNameInTable="timeColumn" type="xs:dateTime" />
+              <xs:element name="jpg" msprop:Generator_UserColumnName="jpg" msprop:Generator_ColumnPropNameInRow="jpg" msprop:Generator_ColumnVarNameInTable="columnjpg" msprop:Generator_ColumnPropNameInTable="jpgColumn" type="xs:base64Binary" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BoatPhoto" msprop:Generator_UserTableName="BoatPhoto" msprop:Generator_RowDeletedName="BoatPhotoRowDeleted" msprop:Generator_RowChangedName="BoatPhotoRowChanged" msprop:Generator_RowClassName="BoatPhotoRow" msprop:Generator_RowChangingName="BoatPhotoRowChanging" msprop:Generator_RowEvArgName="BoatPhotoRowChangeEvent" msprop:Generator_RowEvHandlerName="BoatPhotoRowChangeEventHandler" msprop:Generator_TableClassName="BoatPhotoDataTable" msprop:Generator_TableVarName="tableBoatPhoto" msprop:Generator_RowDeletingName="BoatPhotoRowDeleting" msprop:Generator_TablePropName="BoatPhoto">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="boat_id" msprop:Generator_UserColumnName="boat_id" msprop:Generator_ColumnPropNameInRow="boat_id" msprop:Generator_ColumnVarNameInTable="columnboat_id" msprop:Generator_ColumnPropNameInTable="boat_idColumn" type="xs:int" />
+              <xs:element name="photo_id" msprop:Generator_UserColumnName="photo_id" msprop:Generator_ColumnPropNameInRow="photo_id" msprop:Generator_ColumnVarNameInTable="columnphoto_id" msprop:Generator_ColumnPropNameInTable="photo_idColumn" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Bookmark" msprop:Generator_UserTableName="Bookmark" msprop:Generator_RowDeletedName="BookmarkRowDeleted" msprop:Generator_RowChangedName="BookmarkRowChanged" msprop:Generator_RowClassName="BookmarkRow" msprop:Generator_RowChangingName="BookmarkRowChanging" msprop:Generator_RowEvArgName="BookmarkRowChangeEvent" msprop:Generator_RowEvHandlerName="BookmarkRowChangeEventHandler" msprop:Generator_TableClassName="BookmarkDataTable" msprop:Generator_TableVarName="tableBookmark" msprop:Generator_RowDeletingName="BookmarkRowDeleting" msprop:Generator_TablePropName="Bookmark">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="time" msprop:Generator_UserColumnName="time" msprop:Generator_ColumnVarNameInTable="columntime" msprop:Generator_ColumnPropNameInRow="time" msprop:Generator_ColumnPropNameInTable="timeColumn" type="xs:dateTime" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Race" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Lake_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:Lake" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Boat_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Boat" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="BoatType_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:BoatType" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Course_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:Course" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Bouy_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Bouy" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="SensorFile_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SensorFile" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="SensorReadings_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SensorReadings" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Mark_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Mark" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Photo_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Photo" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="Bookmark_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Bookmark" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:keyref name="FK_Course_CourseMarkOrder" refer="Course_Constraint1" msprop:rel_Generator_UserRelationName="FK_Course_CourseMarkOrder" msprop:rel_Generator_RelationVarName="relationFK_Course_CourseMarkOrder" msprop:rel_Generator_UserChildTable="CourseMarkOrder" msprop:rel_Generator_UserParentTable="Course" msprop:rel_Generator_ParentPropName="CourseRow" msprop:rel_Generator_ChildPropName="GetCourseMarkOrderRows">
+      <xs:selector xpath=".//mstns:CourseMarkOrder" />
+      <xs:field xpath="mstns:course_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_Mark_CourseMarkOrder" refer="Mark_Constraint1" msprop:rel_Generator_UserRelationName="FK_Mark_CourseMarkOrder" msprop:rel_Generator_RelationVarName="relationFK_Mark_CourseMarkOrder" msprop:rel_Generator_UserChildTable="CourseMarkOrder" msprop:rel_Generator_UserParentTable="Mark" msprop:rel_Generator_ParentPropName="MarkRow" msprop:rel_Generator_ChildPropName="GetCourseMarkOrderRows">
+      <xs:selector xpath=".//mstns:CourseMarkOrder" />
+      <xs:field xpath="mstns:mark_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_Course_Mark" refer="Course_Constraint1" msprop:rel_Generator_UserRelationName="FK_Course_Mark" msprop:rel_Generator_RelationVarName="relationFK_Course_Mark" msprop:rel_Generator_UserChildTable="Mark" msprop:rel_Generator_UserParentTable="Course" msprop:rel_Generator_ParentPropName="CourseRow" msprop:rel_Generator_ChildPropName="GetMarkRows">
+      <xs:selector xpath=".//mstns:Mark" />
+      <xs:field xpath="mstns:course_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_SensorFile_SensorReadings" refer="SensorFile_Constraint1" msprop:rel_Generator_UserRelationName="FK_SensorFile_SensorReadings" msprop:rel_Generator_RelationVarName="relationFK_SensorFile_SensorReadings" msprop:rel_Generator_UserChildTable="SensorReadings" msprop:rel_Generator_UserParentTable="SensorFile" msprop:rel_Generator_ParentPropName="SensorFileRow" msprop:rel_Generator_ChildPropName="GetSensorReadingsRows">
+      <xs:selector xpath=".//mstns:SensorReadings" />
+      <xs:field xpath="mstns:sensorfile_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_File_BoatFile" refer="SensorFile_Constraint1" msprop:rel_Generator_UserRelationName="FK_File_BoatFile" msprop:rel_Generator_RelationVarName="relationFK_File_BoatFile" msprop:rel_Generator_UserChildTable="BoatFile" msprop:rel_Generator_UserParentTable="SensorFile" msprop:rel_Generator_ParentPropName="FileRow" msprop:rel_Generator_ChildPropName="GetBoatFileRows">
+      <xs:selector xpath=".//mstns:BoatFile" />
+      <xs:field xpath="mstns:sensorfile_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_Boat_BoatFile" refer="Boat_Constraint1" msprop:rel_Generator_UserRelationName="FK_Boat_BoatFile" msprop:rel_Generator_RelationVarName="relationFK_Boat_BoatFile" msprop:rel_Generator_UserChildTable="BoatFile" msprop:rel_Generator_UserParentTable="Boat" msprop:rel_Generator_ParentPropName="BoatRow" msprop:rel_Generator_ChildPropName="GetBoatFileRows">
+      <xs:selector xpath=".//mstns:BoatFile" />
+      <xs:field xpath="mstns:boat_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_Boat_RaceBoat" refer="Boat_Constraint1" msprop:rel_Generator_UserRelationName="FK_Boat_RaceBoat" msprop:rel_Generator_RelationVarName="relationFK_Boat_RaceBoat" msprop:rel_Generator_UserChildTable="RaceBoat" msprop:rel_Generator_UserParentTable="Boat" msprop:rel_Generator_ParentPropName="BoatRow" msprop:rel_Generator_ChildPropName="GetRaceBoatRows">
+      <xs:selector xpath=".//mstns:RaceBoat" />
+      <xs:field xpath="mstns:boat_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_Race_RaceBoat" refer="Constraint1" msprop:rel_Generator_UserRelationName="FK_Race_RaceBoat" msprop:rel_Generator_RelationVarName="relationFK_Race_RaceBoat" msprop:rel_Generator_UserChildTable="RaceBoat" msprop:rel_Generator_UserParentTable="Race" msprop:rel_Generator_ParentPropName="RaceRow" msprop:rel_Generator_ChildPropName="GetRaceBoatRows">
+      <xs:selector xpath=".//mstns:RaceBoat" />
+      <xs:field xpath="mstns:race_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_Mark_Bouy" refer="Mark_Constraint1" msprop:rel_Generator_UserRelationName="FK_Mark_Bouy" msprop:rel_Generator_RelationVarName="relationFK_Mark_Bouy" msprop:rel_Generator_UserChildTable="Bouy" msprop:rel_Generator_UserParentTable="Mark" msprop:rel_Generator_ParentPropName="MarkRow" msprop:rel_Generator_ChildPropName="GetBouyRows">
+      <xs:selector xpath=".//mstns:Bouy" />
+      <xs:field xpath="mstns:mark_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_Lake_Course" refer="Lake_Constraint1" msprop:rel_Generator_UserRelationName="FK_Lake_Course" msprop:rel_Generator_RelationVarName="relationFK_Lake_Course" msprop:rel_Generator_UserChildTable="Course" msprop:rel_Generator_UserParentTable="Lake" msprop:rel_Generator_ParentPropName="LakeRow" msprop:rel_Generator_ChildPropName="GetCourseRows">
+      <xs:selector xpath=".//mstns:Course" />
+      <xs:field xpath="mstns:lake_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_BoatType_Boat" refer="BoatType_Constraint1" msprop:rel_Generator_UserRelationName="FK_BoatType_Boat" msprop:rel_Generator_RelationVarName="relationFK_BoatType_Boat" msprop:rel_Generator_UserChildTable="Boat" msprop:rel_Generator_UserParentTable="BoatType" msprop:rel_Generator_ParentPropName="BoatTypeRow" msprop:rel_Generator_ChildPropName="GetBoatRows">
+      <xs:selector xpath=".//mstns:Boat" />
+      <xs:field xpath="mstns:boattype_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_Course_Race" refer="Course_Constraint1" msprop:rel_Generator_UserRelationName="FK_Course_Race" msprop:rel_Generator_RelationVarName="relationFK_Course_Race" msprop:rel_Generator_UserChildTable="Race" msprop:rel_Generator_UserParentTable="Course" msprop:rel_Generator_ParentPropName="CourseRow" msprop:rel_Generator_ChildPropName="GetRaceRows">
+      <xs:selector xpath=".//mstns:Race" />
+      <xs:field xpath="mstns:course_id" />
+    </xs:keyref>
+    <xs:keyref name="FK_Lake_Race" refer="Lake_Constraint1" msprop:rel_Generator_UserRelationName="FK_Lake_Race" msprop:rel_Generator_RelationVarName="relationFK_Lake_Race" msprop:rel_Generator_UserChildTable="Race" msprop:rel_Generator_UserParentTable="Lake" msprop:rel_Generator_ParentPropName="LakeRow" msprop:rel_Generator_ChildPropName="GetRaceRows">
+      <xs:selector xpath=".//mstns:Race" />
+      <xs:field xpath="mstns:lake_id" />
+    </xs:keyref>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Photo_BoatPhoto" msdata:parent="Photo" msdata:child="BoatPhoto" msdata:parentkey="id" msdata:childkey="photo_id" msprop:Generator_UserRelationName="Photo_BoatPhoto" msprop:Generator_RelationVarName="relationPhoto_BoatPhoto" msprop:Generator_UserChildTable="BoatPhoto" msprop:Generator_UserParentTable="Photo" msprop:Generator_ParentPropName="PhotoRow" msprop:Generator_ChildPropName="GetBoatPhotoRows" />
+      <msdata:Relationship name="Boat_BoatPhoto" msdata:parent="Boat" msdata:child="BoatPhoto" msdata:parentkey="id" msdata:childkey="boat_id" msprop:Generator_UserRelationName="Boat_BoatPhoto" msprop:Generator_RelationVarName="relationBoat_BoatPhoto" msprop:Generator_UserChildTable="BoatPhoto" msprop:Generator_UserParentTable="Boat" msprop:Generator_ParentPropName="BoatRow" msprop:Generator_ChildPropName="GetBoatPhotoRows" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>
