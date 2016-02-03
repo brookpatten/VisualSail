@@ -37,7 +37,7 @@
             this.newBTN = new System.Windows.Forms.Button();
             this.openBTN = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.photoBTN = new System.Windows.Forms.Button();
+            //this.photoBTN = new System.Windows.Forms.Button();
             this.playBTN = new System.Windows.Forms.Button();
             this.cancelBTN = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -114,7 +114,7 @@
             // 
             this.panel1.Controls.Add(this.newBTN);
             this.panel1.Controls.Add(this.openBTN);
-            this.panel1.Controls.Add(this.photoBTN);
+            //this.panel1.Controls.Add(this.photoBTN);
             this.panel1.Controls.Add(this.playBTN);
             this.panel1.Controls.Add(this.cancelBTN);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -125,17 +125,17 @@
             // 
             // photoBTN
             // 
-            this.photoBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.photoBTN.Enabled = false;
-			this.photoBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("photos.png");
-            this.photoBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.photoBTN.Location = new System.Drawing.Point(200, 0);
-            this.photoBTN.Name = "photoBTN";
-            this.photoBTN.Size = new System.Drawing.Size(100, 23);
-            this.photoBTN.TabIndex = 5;
-            this.photoBTN.Text = "Photos";
-            this.photoBTN.UseVisualStyleBackColor = true;
-            this.photoBTN.Click += new System.EventHandler(this.photoBTN_Click);
+//            this.photoBTN.Dock = System.Windows.Forms.DockStyle.Right;
+//            this.photoBTN.Enabled = false;
+//			this.photoBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("photos.png");
+//            this.photoBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+//            this.photoBTN.Location = new System.Drawing.Point(200, 0);
+//            this.photoBTN.Name = "photoBTN";
+//            this.photoBTN.Size = new System.Drawing.Size(100, 23);
+//            this.photoBTN.TabIndex = 5;
+//            this.photoBTN.Text = "Photos";
+//            this.photoBTN.UseVisualStyleBackColor = true;
+//            this.photoBTN.Click += new System.EventHandler(this.photoBTN_Click);
             // 
             // playBTN
             // 
@@ -197,6 +197,6 @@
         private System.Windows.Forms.Button cancelBTN;
         private System.Windows.Forms.Button playBTN;
         private System.Windows.Forms.ColumnHeader boatsCH;
-        private System.Windows.Forms.Button photoBTN;
+        //private System.Windows.Forms.Button photoBTN;
     }
 }

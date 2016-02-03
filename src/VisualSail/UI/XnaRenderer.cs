@@ -98,12 +98,13 @@ namespace AmphibianSoftware.VisualSail.UI
             }
 
             _game = new Game();
-            _graphics = new GraphicsDeviceManager(_game);
-            _graphics.IsFullScreen = false;
-            //_graphics.PreparingDeviceSettings += new EventHandler<PreparingDeviceSettingsEventArgs>(_graphics_PreparingDeviceSettings);
+			_graphics = new GraphicsDeviceManager(_game);
+			_graphics.CreateDevice ();
+			_graphics.IsFullScreen = false;
+            _graphics.PreparingDeviceSettings += new EventHandler<PreparingDeviceSettingsEventArgs>(_graphics_PreparingDeviceSettings);
             Resize();
             _content = new ContentManager(_game.Services);
-            _content.RootDirectory = "";
+			_content.RootDirectory = "";//GetContentPath("");
 			_graphics.DeviceReset += new EventHandler<EventArgs>(graphics_DeviceReset);
         }
 
@@ -130,14 +131,26 @@ namespace AmphibianSoftware.VisualSail.UI
             _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;//_backBufferHeight;
             _graphics.ApplyChanges();
 
-            _device = _graphics.GraphicsDevice;
+			_device = _graphics.GraphicsDevice;
+
+			if (_device == null) 
+			{
+				throw new InvalidOperationException ("GraphicsDevice is null");
+			}
+
 			//_device.RenderState.AlphaBlendEnable = true;
 			//_device.RenderState.SourceBlend = Blend.SourceAlpha; // source rgb * source alpha
-			_device.BlendState.AlphaSourceBlend = Blend.SourceAlpha;
+			if (_device.BlendState == null) 
+			{
+				_device.BlendState = BlendState.AlphaBlend;
+			}
+			//_device.BlendState.AlphaSourceBlend = Blend.SourceAlpha;
             //_device.RenderState.DestinationBlend = Blend.InverseSourceAlpha; // dest rgb * (255 - source alpha)
-			_device.BlendState.AlphaDestinationBlend = Blend.InverseSourceAlpha;
 			//_device.RenderState.CullMode = CullMode.None;
-			_device.RasterizerState.CullMode = CullMode.None;
+			if (_device.RasterizerState == null) 
+			{
+				_device.RasterizerState = RasterizerState.CullNone;
+			}
 			//camera.Resize(_target.Width, _target.Height);
 
 			VertexDeclarationHelper.Add(typeof(VertexPositionColor), VertexPositionColor.VertexDeclaration);
@@ -159,44 +172,46 @@ namespace AmphibianSoftware.VisualSail.UI
             //{
             //    b.LoadResources(_device, _content);
             //}
-            _skyTexture = LoadAndScaleTexture(ContentHelper.StaticContentPath + "average_day.jpg", _device);
-            _mouseTexture = _content.Load<Texture2D>(ContentHelper.StaticContentPath + "mouse");
-            _mouseLeftTexture = _content.Load<Texture2D>(ContentHelper.StaticContentPath + "mouse-left");
-            _mouseRightTexture = _content.Load<Texture2D>(ContentHelper.StaticContentPath + "mouse-right");
+            _skyTexture = LoadAndScaleTexture("average_day.jpg",false, _device);
+
+			_mouseTexture = LoadAndScaleTexture("mouse.png",true, _device);
+			_mouseLeftTexture = LoadAndScaleTexture("mouse-left.png",true, _device);
+			_mouseRightTexture = LoadAndScaleTexture("mouse-right.png",true, _device);
 
             _lakeTextureEffect = new BasicEffect(_device);
-            if (!File.Exists(ContentHelper.DynamicContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West)))
-            {
-                try
-                {
-                    string lakeFile = SatelliteImageryHelper.GetSatelliteImage(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West, (int)this.Race.Lake.WidthInMeters / 10, (int)this.Race.Lake.HeightInMeters / 10);
-                    //FileInfo fi = new FileInfo(lakeFile);
-                    //fi.MoveTo(ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
-                }
-                catch //(Exception e)
-                {
-                }
-            }
-            try
-            {
-                _lakeTexture = LoadAndScaleTexture(ContentHelper.DynamicContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West), _device);
-                //_lakeTexture = Texture2D.FromFile(device, ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
-                //_lakeTexture = content.Load<Texture2D>(ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
-                _lakeTextureEffect.Texture = _lakeTexture;
-                _lakeTextureEffect.TextureEnabled = true;
-                _lakeTextureAvailible = true;
-
-                //lakeTextureEffect.FogEnabled = true;
-                //lakeTextureEffect.FogColor = Color.White.ToVector3();
-                //lakeTextureEffect.FogStart = Camera.FarClipDistance - 300;
-                //lakeTextureEffect.FogEnd = Camera.FarClipDistance;
-                //MessageBox.Show("Loaded lake texture:"+_lakeTexture.Width+"x"+_lakeTexture.Height);
-            }
-            catch (Exception /*e*/)
-            {
+//            if (!File.Exists(ContentHelper.DynamicContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West)))
+//            {
+//                try
+//                {
+//                    string lakeFile = SatelliteImageryHelper.GetSatelliteImage(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West, (int)this.Race.Lake.WidthInMeters / 10, (int)this.Race.Lake.HeightInMeters / 10);
+//                    //FileInfo fi = new FileInfo(lakeFile);
+//                    //fi.MoveTo(ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
+//                }
+//                catch //(Exception e)
+//                {
+//                }
+//            }
+			//imagery doesn't work anymore since the nasa service went down
+//            try
+//            {
+//                _lakeTexture = LoadAndScaleTexture(SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West), _device);
+//                //_lakeTexture = Texture2D.FromFile(device, ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
+//                //_lakeTexture = content.Load<Texture2D>(ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
+//                _lakeTextureEffect.Texture = _lakeTexture;
+//                _lakeTextureEffect.TextureEnabled = true;
+//                _lakeTextureAvailible = true;
+//
+//                //lakeTextureEffect.FogEnabled = true;
+//                //lakeTextureEffect.FogColor = Color.White.ToVector3();
+//                //lakeTextureEffect.FogStart = Camera.FarClipDistance - 300;
+//                //lakeTextureEffect.FogEnd = Camera.FarClipDistance;
+//                //MessageBox.Show("Loaded lake texture:"+_lakeTexture.Width+"x"+_lakeTexture.Height);
+//            }
+//            catch (Exception /*e*/)
+//            {
                 //MessageBox.Show("Failed to load area texture." + e.Message + ":" + e.StackTrace);
                 _lakeTextureAvailible = false;
-            }
+            //}
 
             _skyBoxEffect = new BasicEffect(_device);
             _skyBoxEffect.Texture = _skyTexture;
@@ -219,14 +234,19 @@ namespace AmphibianSoftware.VisualSail.UI
 
             //text = new BasicEffect(device, null);
 
-            _font = _content.Load<SpriteFont>(ContentHelper.StaticContentPath + "tahoma");
+			_font=_content.Load<SpriteFont> (GetContentPath ("tahoma.bmp"));
+            //_font = _content.Load<SpriteFont>(ContentHelper.StaticContentPath + "tahoma");
             _batch = new SpriteBatch(_device);
             _line = new PrimitiveLine(_device);
 
             //_photos = Photo.FindInDateRange(this.Race.LocalCountdownStart, this.Race.LocalEnd);
-            _bouyModel = _content.Load<Model>(ContentHelper.StaticContentPath + "bouy");
-            _boatModel = _content.Load<Model>(ContentHelper.StaticContentPath + "ship");
-            _sailEffect = new BasicEffect(_device);
+            //_bouyModel = _content.Load<Model>(ContentHelper.StaticContentPath + "bouy");
+            //_boatModel = _content.Load<Model>(ContentHelper.StaticContentPath + "ship");
+
+			_bouyModel =_content.Load<Model> (GetContentPath ("bouy.x"));
+			_boatModel = _content.Load<Model> (GetContentPath ("ship.x"));
+
+			_sailEffect = new BasicEffect(_device);
             _sailEffect.EnableDefaultLighting();
             //System.Drawing.Color c=System.Drawing.Color.FromArgb(_boatData.Color);
             //_color = new Vector3((float)c.R / 255.0f, (float)c.G / 255.0f, (float)c.B / 255.0f);
@@ -1140,15 +1160,55 @@ namespace AmphibianSoftware.VisualSail.UI
                 mesh.Draw();
             }
         }
-        private Texture2D LoadAndScaleTexture(string texturePath, GraphicsDevice device)
+
+		private string GetContentPath(string name)
+		{
+			string exePath = System.Reflection.Assembly.GetEntryAssembly().CodeBase;
+    		if(exePath.StartsWith("file:"))
+    		{
+    			exePath = exePath.Substring(6);
+    		}
+    		string exeDir = Path.GetDirectoryName(exePath);
+    		string imageDir = Path.Combine(exeDir,"Content");
+    		string filePath = Path.Combine(imageDir,name);
+    		return filePath;
+		}
+
+        private Texture2D LoadAndScaleTexture(string texturePath,bool embedded, GraphicsDevice device)
         {
-        	Texture2D texture;
-			using(var fs = new FileStream(texturePath,FileMode.Open))
-			{
-				texture = Texture2D.FromStream(device,fs);
-				fs.Close();
+        	if(embedded)
+        	{
+				using(var image = EmbeddedResourceHelper.LoadImage(texturePath))
+				{
+					using(var mem = new MemoryStream())
+					{
+						image.Save(mem,System.Drawing.Imaging.ImageFormat.Bmp);
+						mem.Position=0;
+						var texture = Texture2D.FromStream(device,mem);
+						mem.Close();
+						return texture;
+					}
+				}
 			}
-			return texture;
+        	else
+        	{
+        		string exePath = System.Reflection.Assembly.GetEntryAssembly().CodeBase;
+        		if(exePath.StartsWith("file:"))
+        		{
+        			exePath = exePath.Substring(6);
+        		}
+        		string exeDir = Path.GetDirectoryName(exePath);
+        		string imageDir = Path.Combine(exeDir,"Images");
+        		string filePath = Path.Combine(imageDir,texturePath);
+	        	Texture2D texture;
+				using(var fs = new FileStream(filePath,FileMode.Open))
+				{
+					texture = Texture2D.FromStream(device,fs);
+					fs.Close();
+					return texture;
+				}
+
+			}
 
 			//it seems like monogame does the resizing for us where xna didn't?
 			//we shall see

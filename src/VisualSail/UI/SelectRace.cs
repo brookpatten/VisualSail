@@ -45,7 +45,7 @@ namespace AmphibianSoftware.VisualSail.UI
             }
             else
             {
-                AllowPhotos();
+                //AllowPhotos();
                 raceLV.Items[0].Selected = true;
                 raceLV.Focus();
             }
@@ -115,15 +115,16 @@ namespace AmphibianSoftware.VisualSail.UI
             this.Close();
         }
 
-        private void AllowPhotos()
-        {
-            photoBTN.Enabled = Boat.FindAll().Count > 0 && Lake.FindAll().Count>0;
-        }
+        //private void AllowPhotos()
+        //{
+			//return false;
+            //photoBTN.Enabled = Boat.FindAll().Count > 0 && Lake.FindAll().Count>0;
+        //}
 
-        private void photoBTN_Click(object sender, EventArgs e)
-        {
-            PhotoManager manager = new PhotoManager();
-            manager.ShowDialog(this);
-        }
+//        private void photoBTN_Click(object sender, EventArgs e)
+//        {
+//            PhotoManager manager = new PhotoManager();
+//            manager.ShowDialog(this);
+//        }
     }
 }

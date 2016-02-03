@@ -555,18 +555,6 @@ namespace AmphibianSoftware.VisualSail.UI
             aboutText.Append(Environment.NewLine);
             aboutText.Append(Environment.NewLine);
 
-            aboutText.Append("YouTube Upload Capability Created With...");
-            aboutText.Append(Environment.NewLine);
-            aboutText.Append("Google-GData 1.3.1.0");
-            aboutText.Append(Environment.NewLine);
-            aboutText.Append("Copyright 2006 Google Inc.");
-            aboutText.Append(Environment.NewLine);
-            aboutText.Append("Licensed under the Apache License 2.0");
-            aboutText.Append(Environment.NewLine);
-            aboutText.Append("(See Google.GData.License.txt for the complete Apache License 2.0)");
-            aboutText.Append(Environment.NewLine);
-            aboutText.Append(Environment.NewLine);
-
             aboutText.Append("Icons Provided By...");
             aboutText.Append(Environment.NewLine);
             aboutText.Append("FamFamFam Silk Icons 1.3");
