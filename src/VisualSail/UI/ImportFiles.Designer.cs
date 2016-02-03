@@ -120,7 +120,7 @@
             // removeFileBTN
             // 
             this.removeFileBTN.Enabled = false;
-            this.removeFileBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.chart_line_delete;
+			this.removeFileBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("chart_line_delete.png");
             this.removeFileBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.removeFileBTN.Location = new System.Drawing.Point(115, 3);
             this.removeFileBTN.Name = "removeFileBTN";
@@ -132,7 +132,7 @@
             // 
             // importBTN
             // 
-            this.importBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.chart_line_add;
+			this.importBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("chart_line_add.png");
             this.importBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.importBTN.Location = new System.Drawing.Point(9, 3);
             this.importBTN.Name = "importBTN";
@@ -145,7 +145,7 @@
             // okBTN
             // 
             this.okBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.okBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.accept;
+			this.okBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("accept.png");
             this.okBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.okBTN.Location = new System.Drawing.Point(128, 0);
             this.okBTN.Name = "okBTN";
@@ -180,7 +180,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ImportFiles";

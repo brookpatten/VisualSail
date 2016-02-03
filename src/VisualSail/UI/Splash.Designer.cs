@@ -71,7 +71,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::AmphibianSoftware.VisualSail.Properties.Resources.splash;
+			this.BackgroundImage = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("splash.png");
             this.ClientSize = new System.Drawing.Size(634, 485);
             this.ControlBox = false;
             this.Controls.Add(this.licenseLBL);

@@ -103,7 +103,7 @@
             // addFolderBTN
             // 
             this.addFolderBTN.Dock = System.Windows.Forms.DockStyle.Left;
-            this.addFolderBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.folderbrowse;
+			this.addFolderBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("folderbrowse.png");
             this.addFolderBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.addFolderBTN.Location = new System.Drawing.Point(0, 0);
             this.addFolderBTN.Name = "addFolderBTN";
@@ -116,7 +116,7 @@
             // addFilesBTN
             // 
             this.addFilesBTN.Dock = System.Windows.Forms.DockStyle.Left;
-            this.addFilesBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.filebrowse;
+			this.addFilesBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("filebrowse.png");
             this.addFilesBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.addFilesBTN.Location = new System.Drawing.Point(100, 0);
             this.addFilesBTN.Name = "addFilesBTN";
@@ -321,7 +321,7 @@
             // deleteBTN
             // 
             this.deleteBTN.Dock = System.Windows.Forms.DockStyle.Left;
-            this.deleteBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.cross;
+			this.deleteBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("cross.png");
             this.deleteBTN.Location = new System.Drawing.Point(88, 0);
             this.deleteBTN.Name = "deleteBTN";
             this.deleteBTN.Size = new System.Drawing.Size(30, 22);
@@ -332,7 +332,7 @@
             // saveBTN
             // 
             this.saveBTN.Dock = System.Windows.Forms.DockStyle.Left;
-            this.saveBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.imagesave;
+			this.saveBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("imagesave.png");
             this.saveBTN.Location = new System.Drawing.Point(60, 0);
             this.saveBTN.Name = "saveBTN";
             this.saveBTN.Size = new System.Drawing.Size(28, 22);
@@ -343,7 +343,7 @@
             // rotateRightBTN
             // 
             this.rotateRightBTN.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rotateRightBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.rotateright;
+			this.rotateRightBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("rotateright.png");
             this.rotateRightBTN.Location = new System.Drawing.Point(30, 0);
             this.rotateRightBTN.Name = "rotateRightBTN";
             this.rotateRightBTN.Size = new System.Drawing.Size(30, 22);
@@ -354,7 +354,7 @@
             // rotateLeftBTN
             // 
             this.rotateLeftBTN.Dock = System.Windows.Forms.DockStyle.Left;
-            this.rotateLeftBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.rotateleft;
+			this.rotateLeftBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("rotateleft.png");
             this.rotateLeftBTN.Location = new System.Drawing.Point(0, 0);
             this.rotateLeftBTN.Name = "rotateLeftBTN";
             this.rotateLeftBTN.Size = new System.Drawing.Size(30, 22);
@@ -395,7 +395,7 @@
             // okBTN
             // 
             this.okBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.okBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.accept;
+			this.okBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("accept.png");
             this.okBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.okBTN.Location = new System.Drawing.Point(424, 0);
             this.okBTN.Name = "okBTN";
@@ -408,7 +408,7 @@
             // cancelBTN
             // 
             this.cancelBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.cancelBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.cancel;
+			this.cancelBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("cancel.png");
             this.cancelBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cancelBTN.Location = new System.Drawing.Point(524, 0);
             this.cancelBTN.Name = "cancelBTN";
@@ -426,7 +426,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel4);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(224, 225);
             this.Name = "PhotoManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

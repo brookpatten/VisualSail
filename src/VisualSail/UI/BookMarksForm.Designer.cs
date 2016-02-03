@@ -81,7 +81,7 @@
             // 
             this.gotoBTN.Dock = System.Windows.Forms.DockStyle.Left;
             this.gotoBTN.Enabled = false;
-            this.gotoBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.resultset_next;
+			this.gotoBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("resultset_next.png");
             this.gotoBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.gotoBTN.Location = new System.Drawing.Point(0, 0);
             this.gotoBTN.Name = "gotoBTN";
@@ -94,7 +94,7 @@
             // addBTN
             // 
             this.addBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.addBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.add;
+			this.addBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("add.png");
             this.addBTN.Location = new System.Drawing.Point(154, 0);
             this.addBTN.Name = "addBTN";
             this.addBTN.Size = new System.Drawing.Size(23, 23);
@@ -106,7 +106,7 @@
             // 
             this.removeBTN.Dock = System.Windows.Forms.DockStyle.Right;
             this.removeBTN.Enabled = false;
-            this.removeBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.delete;
+			this.removeBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("delete.png");
             this.removeBTN.Location = new System.Drawing.Point(177, 0);
             this.removeBTN.Name = "removeBTN";
             this.removeBTN.Size = new System.Drawing.Size(23, 23);
@@ -122,7 +122,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.bookMarksLV);
             this.HideOnClose = true;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BookMarksForm";
             this.TabText = "Bookmarks";
             this.Text = "Bookmarks";

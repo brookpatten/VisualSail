@@ -505,7 +505,7 @@
             // 
             // addBTN
             // 
-            this.addBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.add;
+			this.addBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("add.png");
             this.addBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.addBTN.Location = new System.Drawing.Point(6, 211);
             this.addBTN.Name = "addBTN";
@@ -518,7 +518,7 @@
             // removeBTN
             // 
             this.removeBTN.Enabled = false;
-            this.removeBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.delete;
+			this.removeBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("delete.png");
             this.removeBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.removeBTN.Location = new System.Drawing.Point(112, 211);
             this.removeBTN.Name = "removeBTN";
@@ -531,7 +531,7 @@
             // removeOrderBTN
             // 
             this.removeOrderBTN.Enabled = false;
-            this.removeOrderBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.arrow_left;
+			this.removeOrderBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("arrow_left.png");
             this.removeOrderBTN.Location = new System.Drawing.Point(111, 143);
             this.removeOrderBTN.Name = "removeOrderBTN";
             this.removeOrderBTN.Size = new System.Drawing.Size(32, 23);
@@ -542,7 +542,7 @@
             // addOrderBTN
             // 
             this.addOrderBTN.Enabled = false;
-            this.addOrderBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.arrow_right;
+			this.addOrderBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("arrow_right.png");
             this.addOrderBTN.Location = new System.Drawing.Point(111, 114);
             this.addOrderBTN.Name = "addOrderBTN";
             this.addOrderBTN.Size = new System.Drawing.Size(32, 23);
@@ -553,7 +553,7 @@
             // okBTN
             // 
             this.okBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.okBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.accept;
+			this.okBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("accept.png");
             this.okBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.okBTN.Location = new System.Drawing.Point(432, 0);
             this.okBTN.Name = "okBTN";
@@ -566,7 +566,7 @@
             // cancelBTN
             // 
             this.cancelBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.cancelBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.cancel;
+				this.cancelBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("cancel.png");
             this.cancelBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cancelBTN.Location = new System.Drawing.Point(532, 0);
             this.cancelBTN.Name = "cancelBTN";
@@ -587,7 +587,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.editCourseGB);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EditCourses";

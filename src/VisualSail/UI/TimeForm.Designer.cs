@@ -65,7 +65,7 @@
             // reverseBTN
             // 
             this.reverseBTN.Dock = System.Windows.Forms.DockStyle.Left;
-            this.reverseBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.resultset_previous;
+			this.reverseBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("resultset_previous.png");
             this.reverseBTN.Location = new System.Drawing.Point(0, 0);
             this.reverseBTN.Name = "reverseBTN";
             this.reverseBTN.Size = new System.Drawing.Size(54, 22);
@@ -88,7 +88,7 @@
             // forwardBTN
             // 
             this.forwardBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.forwardBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.resultset_next;
+			this.forwardBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("resultset_next.png");
             this.forwardBTN.Location = new System.Drawing.Point(154, 0);
             this.forwardBTN.Name = "forwardBTN";
             this.forwardBTN.Size = new System.Drawing.Size(48, 22);
@@ -270,7 +270,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.HideOnClose = true;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(182, 24);
             this.Name = "TimeForm";
             this.ShowInTaskbar = false;

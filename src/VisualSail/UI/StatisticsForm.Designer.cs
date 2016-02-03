@@ -164,7 +164,7 @@
             // 
             // selectedColumnsToolStripMenuItem
             // 
-            this.selectedColumnsToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.chart_curve;
+			this.selectedColumnsToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("chart_curve.png");
             this.selectedColumnsToolStripMenuItem.Name = "selectedColumnsToolStripMenuItem";
             this.selectedColumnsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.selectedColumnsToolStripMenuItem.Text = "Selected Columns";
@@ -172,7 +172,7 @@
             // 
             // selectedCellsToolStripMenuItem
             // 
-            this.selectedCellsToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.chart_curve;
+			this.selectedCellsToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("chart_curve.png");
             this.selectedCellsToolStripMenuItem.Name = "selectedCellsToolStripMenuItem";
             this.selectedCellsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.selectedCellsToolStripMenuItem.Text = "Selected Cells";
@@ -208,7 +208,7 @@
             this.Controls.Add(this.statsTGV);
             this.Controls.Add(this.statisticsMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.statisticsMenu;
             this.Name = "StatisticsForm";
             this.ShowInTaskbar = false;

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">.NET</Platform>
+    <ProjectGuid>{8812F64A-C93E-47C8-BB5D-89C354BB4DAC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>VisualSail2</RootNamespace>
+    <AssemblyName>VisualSail2</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|.NET' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|.NET' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="OpenTK.dll.config" />
+    <None Include="Tao.Sdl.dll.config" />
+    <None Include="packages.config" />
+    <None Include="Content\Thumbs.db" />
+    <None Include="Content\bouy.x" />
+    <None Include="Content\e-scow_directxformat.x" />
+    <None Include="Content\scow.x" />
+    <None Include="Content\ship.x" />
+    <None Include="Data\SkipperDataSet.xsc" />
+    <None Include="Data\SkipperDataSet.xsd" />
+    <None Include="Data\SkipperDataSet.xss" />
+    <None Include="Images\Thumbs.db" />
+    <None Include="Images\splash.xcf" />
+    <None Include="Images\tahoma.bmp" />
+    <None Include="Images\water.bmp" />
+    <None Include="Images\water.jpg" />
+    <None Include="Models\bouy.wings" />
+    <None Include="Models\bouy.x" />
+    <None Include="Models\scow.wings" />
+    <None Include="Models\scow.x" />
+    <None Include="Models\ship.x" />
+    <None Include="Properties\Settings.settings" />
+    <None Include="UI\ActivationForm.resx" />
+    <None Include="UI\BookMarksForm.resx" />
+    <None Include="UI\BusyDialog.resx" />
+    <None Include="UI\Dashboard.resx" />
+    <None Include="UI\EditBoat.resx" />
+    <None Include="UI\EditCourses.resx" />
+    <None Include="UI\EditRace.resx" />
+    <None Include="UI\ExistingImageSelect.resx" />
+    <None Include="UI\GettingStarted.resx" />
+    <None Include="UI\GraphForm.resx" />
+    <None Include="UI\ImportFiles.resx" />
+    <None Include="UI\NewBookMarkDialog.resx" />
+    <None Include="UI\PhotoManager.resx" />
+    <None Include="UI\SelectRace.resx" />
+    <None Include="UI\SkipperMDI.resx" />
+    <None Include="UI\Splash.resx" />
+    <None Include="UI\StatisticsForm.resx" />
+    <None Include="UI\TimeForm.resx" />
+    <None Include="UI\VideoUploadDialog.resx" />
+    <None Include="UI\ViewForm.resx" />
+    <None Include="UI\Controls\DirectionSelector.resx" />
+    <None Include="UI\Controls\LakeResizeControl.resx" />
+    <None Include="UI\Import\CSV\ColumnAssignment.resx" />
+    <None Include="UI\Import\CSV\ColumnFilter.resx" />
+    <None Include="UI\Import\NMEA\NmeaOptions.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\packages\MonoGame.Framework.Linux.3.4.0.459\lib\net40\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\packages\MonoGame.Framework.Linux.3.4.0.459\lib\net40\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Sdl">
+      <HintPath>..\packages\MonoGame.Framework.Linux.3.4.0.459\lib\net40\Tao.Sdl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Net" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking">
+      <HintPath>..\packages\DockPanelSuite.2.9.0.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="ZedGraph">
+      <HintPath>..\packages\ZedGraph.5.1.7\lib\net35-Client\ZedGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Design" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
+    <Folder Include="Data\" />
+    <Folder Include="Executable\" />
+    <Folder Include="Images\" />
+    <Folder Include="Library\" />
+    <Folder Include="Models\" />
+    <Folder Include="Properties\" />
+    <Folder Include="UI\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\Boat.cs" />
+    <Compile Include="Data\BoatType.cs" />
+    <Compile Include="Data\Bookmark.cs" />
+    <Compile Include="Data\Bouy.cs" />
+    <Compile Include="Data\Coordinate.cs" />
+    <Compile Include="Data\CoordinatePoint.cs" />
+    <Compile Include="Data\Course.cs" />
+    <Compile Include="Data\Lake.cs" />
+    <Compile Include="Data\Mark.cs" />
+    <Compile Include="Data\Persistance.cs" />
+    <Compile Include="Data\Photo.cs" />
+    <Compile Include="Data\Race.cs" />
+    <Compile Include="Data\SensorFile.cs" />
+    <Compile Include="Data\SkipperDataSet.Designer.cs" />
+    <Compile Include="Data\SkipperDataSet.cs" />
+    <Compile Include="Data\Import\CsvImporter.cs" />
+    <Compile Include="Data\Import\FileImporter.cs" />
+    <Compile Include="Data\Import\GpxImporter.cs" />
+    <Compile Include="Data\Import\KmlImporter.cs" />
+    <Compile Include="Data\Import\NmeaImporter.cs" />
+    <Compile Include="Data\Import\VccImporter.cs" />
+    <Compile Include="Data\Statistics\Average.cs" />
+    <Compile Include="Data\Statistics\Calculator.cs" />
+    <Compile Include="Data\Statistics\First.cs" />
+    <Compile Include="Data\Statistics\Last.cs" />
+    <Compile Include="Data\Statistics\Maximum.cs" />
+    <Compile Include="Data\Statistics\Minimum.cs" />
+    <Compile Include="Data\Statistics\Raw.cs" />
+    <Compile Include="Data\Statistics\SetTimeAverage.cs" />
+    <Compile Include="Data\Statistics\Statistic.cs" />
+    <Compile Include="Data\Statistics\Sum.cs" />
+    <Compile Include="Data\Statistics\TimeLineStatistic.cs" />
+    <Compile Include="Data\Statistics\TimeLineStatisticCollection.cs" />
+    <Compile Include="Data\TimeLine\TimeLine.cs" />
+    <Compile Include="Executable\Program.cs" />
+    <Compile Include="Library\AngleHelper.cs" />
+    <Compile Include="Library\BezierHelper.cs" />
+    <Compile Include="Library\Bouy.cs" />
+    <Compile Include="Library\Camera.cs" />
+    <Compile Include="Library\CameraMan.cs" />
+    <Compile Include="Library\ColorHelper.cs" />
+    <Compile Include="Library\ContentHelper.cs" />
+    <Compile Include="Library\Delegates.cs" />
+    <Compile Include="Library\FloatingObject.cs" />
+    <Compile Include="Library\GeometryHelper.cs" />
+    <Compile Include="Library\ISensor.cs" />
+    <Compile Include="Library\LinePrimitive.cs" />
+    <Compile Include="Library\Map.cs" />
+    <Compile Include="Library\ReplayBoat.cs" />
+    <Compile Include="Library\Sail.cs" />
+    <Compile Include="Library\SatelliteImageryHelper.cs" />
+    <Compile Include="Library\SensorArray.cs" />
+    <Compile Include="Library\VerbageHelper.cs" />
+    <Compile Include="Library\IO\SerialDevice.cs" />
+    <Compile Include="Library\Nmea\NmeaDictionary.cs" />
+    <Compile Include="Library\Nmea\NmeaParser.cs" />
+    <Compile Include="Library\Nmea\NmeaSensor.cs" />
+    <Compile Include="Library\Nmea\NmeaSentenceType.cs" />
+    <Compile Include="Library\Nmea\NmeaSentenceTypePart.cs" />
+    <Compile Include="Library\Nmea\VirtualNmeaSensor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs" />
+    <Compile Include="UI\ActivationForm.Designer.cs" />
+    <Compile Include="UI\ActivationForm.cs" />
+    <Compile Include="UI\BookMarksForm.Designer.cs" />
+    <Compile Include="UI\BookMarksForm.cs" />
+    <Compile Include="UI\BusyDialog.Designer.cs" />
+    <Compile Include="UI\BusyDialog.cs" />
+    <Compile Include="UI\BusyDialogManager.cs" />
+    <Compile Include="UI\Dashboard.Designer.cs" />
+    <Compile Include="UI\Dashboard.cs" />
+    <Compile Include="UI\EditBoat.Designer.cs" />
+    <Compile Include="UI\EditBoat.cs" />
+    <Compile Include="UI\EditCourses.Designer.cs" />
+    <Compile Include="UI\EditCourses.cs" />
+    <Compile Include="UI\EditRace.Designer.cs" />
+    <Compile Include="UI\EditRace.cs" />
+    <Compile Include="UI\ExistingImageSelect.Designer.cs" />
+    <Compile Include="UI\ExistingImageSelect.cs" />
+    <Compile Include="UI\GdiCameraMan.cs" />
+    <Compile Include="UI\GdiRenderer.cs" />
+    <Compile Include="UI\GettingStarted.Designer.cs" />
+    <Compile Include="UI\GettingStarted.cs" />
+    <Compile Include="UI\GraphForm.Designer.cs" />
+    <Compile Include="UI\GraphForm.cs" />
+    <Compile Include="UI\IViewPort.cs" />
+    <Compile Include="UI\ImportFiles.Designer.cs" />
+    <Compile Include="UI\ImportFiles.cs" />
+    <Compile Include="UI\NewBookMarkDialog.Designer.cs" />
+    <Compile Include="UI\NewBookMarkDialog.cs" />
+    <Compile Include="UI\NullRenderer.cs" />
+    <Compile Include="UI\PhotoManager.Designer.cs" />
+    <Compile Include="UI\PhotoManager.cs" />
+    <Compile Include="UI\Renderer.cs" />
+    <Compile Include="UI\Replay.cs" />
+    <Compile Include="UI\SelectRace.Designer.cs" />
+    <Compile Include="UI\SelectRace.cs" />
+    <Compile Include="UI\SkipperMDI.Designer.cs" />
+    <Compile Include="UI\SkipperMDI.cs" />
+    <Compile Include="UI\Splash.Designer.cs" />
+    <Compile Include="UI\Splash.cs" />
+    <Compile Include="UI\StatisticsForm.Designer.cs" />
+    <Compile Include="UI\StatisticsForm.cs" />
+    <Compile Include="UI\TimeForm.Designer.cs" />
+    <Compile Include="UI\TimeForm.cs" />
+    <Compile Include="UI\UIHelper.cs" />
+    <Compile Include="UI\VertexDeclarationHelper.cs" />
+    <Compile Include="UI\VideoUploadDialog.Designer.cs" />
+    <Compile Include="UI\VideoUploadDialog.cs" />
+    <Compile Include="UI\ViewForm.Designer.cs" />
+    <Compile Include="UI\ViewForm.cs" />
+    <Compile Include="UI\XnaCameraMan.cs" />
+    <Compile Include="UI\XnaRenderer.cs" />
+    <Compile Include="UI\Controls\DirectionSelector.Designer.cs" />
+    <Compile Include="UI\Controls\DirectionSelector.cs" />
+    <Compile Include="UI\Controls\LakeResizeControl.Designer.cs" />
+    <Compile Include="UI\Controls\LakeResizeControl.cs" />
+    <Compile Include="UI\Controls\UserDrawnPanel.cs" />
+    <Compile Include="UI\Controls\TreeGridView\TreeGridCell.cs" />
+    <Compile Include="UI\Controls\TreeGridView\TreeGridEvents.cs" />
+    <Compile Include="UI\Controls\TreeGridView\TreeGridNode.cs" />
+    <Compile Include="UI\Controls\TreeGridView\TreeGridNodeCollection.cs" />
+    <Compile Include="UI\Controls\TreeGridView\TreeGridView.cs" />
+    <Compile Include="UI\Import\CSV\ColumnAssignment.Designer.cs" />
+    <Compile Include="UI\Import\CSV\ColumnAssignment.cs" />
+    <Compile Include="UI\Import\CSV\ColumnFilter.Designer.cs" />
+    <Compile Include="UI\Import\CSV\ColumnFilter.cs" />
+    <Compile Include="UI\Import\NMEA\NmeaOptions.Designer.cs" />
+    <Compile Include="UI\Import\NMEA\NmeaOptions.cs" />
+    <Compile Include="Library\EmbeddedResourceHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\accept.png">
+      <LogicalName>accept.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\add.png">
+      <LogicalName>add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\arrow_left.png">
+      <LogicalName>arrow_left.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\arrow_right.png">
+      <LogicalName>arrow_right.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\arrow_rotate_anticlockwise.png">
+      <LogicalName>arrow_rotate_anticlockwise.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\arrow_rotate_clockwise.png">
+      <LogicalName>arrow_rotate_clockwise.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\backdrop.png">
+      <LogicalName>backdrop.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\book_open.png">
+      <LogicalName>book_open.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\cancel.png">
+      <LogicalName>cancel.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\chart_curve.png">
+      <LogicalName>chart_curve.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\chart_line.png">
+      <LogicalName>chart_line.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\chart_line_add.png">
+      <LogicalName>chart_line_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\chart_line_delete.png">
+      <LogicalName>chart_line_delete.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\clock.png">
+      <LogicalName>clock.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\clouds.jpg">
+      <LogicalName>clouds.jpg</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\cross.png">
+      <LogicalName>cross.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\delete.png">
+      <LogicalName>delete.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\down.bmp">
+      <LogicalName>down.bmp</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\film.png">
+      <LogicalName>film.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\film_link.png">
+      <LogicalName>film_link.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\film_save.png">
+      <LogicalName>film_save.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\folder_explore.png">
+      <LogicalName>folder_explore.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\folder_page_white.png">
+      <LogicalName>folder_page_white.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\image.png">
+      <LogicalName>image.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\left.bmp">
+      <LogicalName>left.bmp</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\map.png">
+      <LogicalName>map.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\map_add.png">
+      <LogicalName>map_add.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\map_edit.png">
+      <LogicalName>map_edit.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\monitor.png">
+      <LogicalName>monitor.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\mouse-left.png">
+      <LogicalName>mouse-left.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\mouse-right.png">
+      <LogicalName>mouse-right.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\mouse.png">
+      <LogicalName>mouse.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\pencil.png">
+      <LogicalName>pencil.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\photos.png">
+      <LogicalName>photos.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\picture_save.png">
+      <LogicalName>picture_save.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\resultset_next.png">
+      <LogicalName>resultset_next.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\resultset_previous.png">
+      <LogicalName>resultset_previous.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\right.bmp">
+      <LogicalName>right.bmp</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\splash.png">
+      <LogicalName>splash.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\stop.png">
+      <LogicalName>stop.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\table.png">
+      <LogicalName>table.png</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Magnify.jpg">
+      <LogicalName>magnify.jpg</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ZoomIn.jpg">
+      <LogicalName>zoomIn.jpg</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\ZoomOut.jpg">
+      <LogicalName>zoomout.jpg</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\up.bmp">
+      <LogicalName>up.bmp</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Boat.jpg">
+      <LogicalName>boat.jpg</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
