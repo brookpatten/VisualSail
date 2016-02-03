@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">.NET</Platform>
     <ProjectGuid>{8812F64A-C93E-47C8-BB5D-89C354BB4DAC}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>VisualSail2</RootNamespace>
-    <AssemblyName>VisualSail2</AssemblyName>
+    <RootNamespace>AmphibianSoftware.VisualSail</RootNamespace>
+    <AssemblyName>VisualSail</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|.NET' ">
