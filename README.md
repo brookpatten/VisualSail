@@ -19,7 +19,7 @@ To compile, you will need [XNA 3.0](https://www.microsoft.com/en-us/download/det
 (Sorry, I told you it was crusty)
 
 To run, you will need the [XNA runtime](https://www.microsoft.com/en-us/download/details.aspx?id=22588) installed.
-If you just want to download and run it, Install the XNA runtime (above) and then download [the zip file](https://raw.githubusercontent.com/brookpatten/VisualSail/master/1.0.1.20.zip)
+If you just want to download and run it, Install the XNA runtime (above) and then download [the zip file](https://github.com/brookpatten/VisualSail/releases/download/v1.0.1.20/1.0.1.20.zip)
 
 For all of its flaws (and there are many), I think it is still a useful application for its purpose, and now the price is right :)
 
