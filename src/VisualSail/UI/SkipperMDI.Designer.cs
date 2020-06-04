@@ -380,7 +380,7 @@
             dockPaneStripToolWindowGradient1.InactiveTabGradient = tabGradient7;
             dockPaneStripSkin1.ToolWindowGradient = dockPaneStripToolWindowGradient1;
             dockPanelSkin1.DockPaneStripSkin = dockPaneStripSkin1;
-            this.mainDP.Skin = dockPanelSkin1;
+            //this.mainDP.Skin = dockPanelSkin1; //TODO: use theme
             this.mainDP.TabIndex = 3;
             // 
             // gpsOpenFD

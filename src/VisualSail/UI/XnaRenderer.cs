@@ -12,11 +12,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
 
 using AmphibianSoftware.VisualSail.Data;
 using AmphibianSoftware.VisualSail.Library;
 using AmphibianSoftware.VisualSail.Data.Statistics;
+
 
 namespace AmphibianSoftware.VisualSail.UI
 {
@@ -67,7 +67,7 @@ namespace AmphibianSoftware.VisualSail.UI
         private Texture2D _mouseTexture;
         private Texture2D _mouseLeftTexture;
         private Texture2D _mouseRightTexture;
-        private SpriteBatch _batch;
+        private Microsoft.Xna.Framework.Graphics.SpriteBatch _batch;
         private SpriteFont _font;
 
         public XnaRenderer()
@@ -99,7 +99,8 @@ namespace AmphibianSoftware.VisualSail.UI
 
             _game = new Game();
 			_graphics = new GraphicsDeviceManager(_game);
-			_graphics.CreateDevice ();
+            //_graphics.CreateDevice ();
+            
 			_graphics.IsFullScreen = false;
             _graphics.PreparingDeviceSettings += new EventHandler<PreparingDeviceSettingsEventArgs>(_graphics_PreparingDeviceSettings);
             Resize();
@@ -129,10 +130,11 @@ namespace AmphibianSoftware.VisualSail.UI
         {
             _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;//_backBufferWidth;
             _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;//_backBufferHeight;
+            
             _graphics.ApplyChanges();
 
 			_device = _graphics.GraphicsDevice;
-
+            
 			if (_device == null) 
 			{
 				throw new InvalidOperationException ("GraphicsDevice is null");
@@ -234,7 +236,7 @@ namespace AmphibianSoftware.VisualSail.UI
 
             //text = new BasicEffect(device, null);
 
-			_font=_content.Load<SpriteFont> (GetContentPath ("tahoma.bmp"));
+			_font=_content.Load<SpriteFont> (GetContentPath ("tahoma"));
             //_font = _content.Load<SpriteFont>(ContentHelper.StaticContentPath + "tahoma");
             _batch = new SpriteBatch(_device);
             _line = new PrimitiveLine(_device);
@@ -243,8 +245,8 @@ namespace AmphibianSoftware.VisualSail.UI
             //_bouyModel = _content.Load<Model>(ContentHelper.StaticContentPath + "bouy");
             //_boatModel = _content.Load<Model>(ContentHelper.StaticContentPath + "ship");
 
-			_bouyModel =_content.Load<Model> (GetContentPath ("bouy.x"));
-			_boatModel = _content.Load<Model> (GetContentPath ("ship.x"));
+			_bouyModel =_content.Load<Model> (GetContentPath ("bouy"));
+			_boatModel = _content.Load<Model> (GetContentPath ("ship"));
 
 			_sailEffect = new BasicEffect(_device);
             _sailEffect.EnableDefaultLighting();
@@ -460,7 +462,7 @@ namespace AmphibianSoftware.VisualSail.UI
         {
             //fps limiter
             DateTime n = DateTime.Now;
-            if (n - _previousRenderTime >= new TimeSpan(0, 0, 0, 0, 30))
+            if (n - _previousRenderTime >= new TimeSpan(0, 0, 0, 0, 15))
             {
                 lock (_viewports)
                 {
@@ -496,6 +498,8 @@ namespace AmphibianSoftware.VisualSail.UI
 
                     foreach (IViewPort vp in _viewports.Keys)
                     {
+                        _device.PresentationParameters.DeviceWindowHandle = vp.RenderTarget.Handle;
+                        _graphics.ApplyChanges();
                         Render(vp);
                         if (vp.ScreenshotPath != null && vp.RecordingSize.Width > 0 && vp.RecordingSize.Height > 0)
                         {
@@ -832,11 +836,13 @@ namespace AmphibianSoftware.VisualSail.UI
 							_device.PresentationParameters.DeviceWindowHandle = target.RenderTarget.Handle;
 							_device.PresentationParameters.BackBufferWidth = _device.Viewport.Width;
 							_device.PresentationParameters.BackBufferHeight = _device.Viewport.Height;
-
+                            _graphics.ApplyChanges();
+                            
 							//TODO: make this render to a texture and render it in GDI?
-
+                            
                             //_device.Present(new Rectangle(0, 0, _device.Viewport.Width, _device.Viewport.Height), new Rectangle(0, 0, _device.Viewport.Width, _device.Viewport.Height), target.RenderTarget.Handle);
 							_device.Present();
+                            
                         }
                     }
                     else
@@ -844,7 +850,7 @@ namespace AmphibianSoftware.VisualSail.UI
                         throw new InvalidOperationException("No Handle");
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //if the windows are being docked/undocked or similiar, the handle might get destroyed mid-draw
                     //it's ok if this happens, we'll just draw again on the next frame.
@@ -855,7 +861,7 @@ namespace AmphibianSoftware.VisualSail.UI
         }
         public void DrawHUD(ReplayBoat boat, GraphicsDevice device, XnaCameraMan cameraMan, DateTime time, float coordinateDivisor)
         {
-			device.DepthStencilState.DepthBufferEnable = false;
+			//device.DepthStencilState.DepthBufferEnable = false;
             //device.RenderState.DepthBufferEnable = false;
             Camera camera = cameraMan.Camera;
             float angle = boat.Angle;
@@ -975,7 +981,7 @@ namespace AmphibianSoftware.VisualSail.UI
                     line++;
                 }
             }
-			device.DepthStencilState.DepthBufferEnable = true;
+			//device.DepthStencilState.DepthBufferEnable = true;
             //device.RenderState.DepthBufferEnable = true;
         }
         private void DrawInstrument(GraphicsDevice device, InstrumentDrawing drawingType, Color color, Vector3 location, float rotation, float startDistance, float length)
@@ -1164,9 +1170,9 @@ namespace AmphibianSoftware.VisualSail.UI
 		private string GetContentPath(string name)
 		{
 			string exePath = System.Reflection.Assembly.GetEntryAssembly().CodeBase;
-    		if(exePath.StartsWith("file:"))
+    		if(exePath.StartsWith("file:///"))
     		{
-    			exePath = exePath.Substring(6);
+                exePath = exePath = exePath.Replace("file:///", "");
     		}
     		string exeDir = Path.GetDirectoryName(exePath);
     		string imageDir = Path.Combine(exeDir,"Content");
@@ -1193,9 +1199,9 @@ namespace AmphibianSoftware.VisualSail.UI
         	else
         	{
         		string exePath = System.Reflection.Assembly.GetEntryAssembly().CodeBase;
-        		if(exePath.StartsWith("file:"))
+        		if(exePath.StartsWith("file:///"))
         		{
-        			exePath = exePath.Substring(6);
+                    exePath = exePath = exePath.Replace("file:///", "");
         		}
         		string exeDir = Path.GetDirectoryName(exePath);
         		string imageDir = Path.Combine(exeDir,"Images");

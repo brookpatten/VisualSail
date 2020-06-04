@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,8 +7,11 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>AmphibianSoftware.VisualSail</RootNamespace>
     <AssemblyName>VisualSail</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MonoGamePlatform>Linux</MonoGamePlatform>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|.NET' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,16 +33,13 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Content\tahoma.spritefont" />
     <None Include="packages.config" />
-    <None Include="Content\Thumbs.db" />
-    <None Include="Content\bouy.x">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Content\bouy.x" />
     <None Include="Content\e-scow_directxformat.x" />
     <None Include="Content\scow.x" />
-    <None Include="Content\ship.x">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Content\ship.x" />
     <None Include="Data\SkipperDataSet.xsc" />
     <None Include="Data\SkipperDataSet.xsd" />
     <None Include="Data\SkipperDataSet.xss" />
@@ -54,46 +54,68 @@
     <None Include="Models\scow.x" />
     <None Include="Models\ship.x" />
     <None Include="Properties\Settings.settings" />
-    <None Include="UI\ActivationForm.resx" />
-    <None Include="UI\BookMarksForm.resx" />
-    <None Include="UI\BusyDialog.resx" />
-    <None Include="UI\Dashboard.resx" />
-    <None Include="UI\EditBoat.resx" />
-    <None Include="UI\EditCourses.resx" />
-    <None Include="UI\EditRace.resx" />
-    <None Include="UI\ExistingImageSelect.resx" />
-    <None Include="UI\GettingStarted.resx" />
-    <None Include="UI\GraphForm.resx" />
-    <None Include="UI\ImportFiles.resx" />
-    <None Include="UI\NewBookMarkDialog.resx" />
-    <None Include="UI\PhotoManager.resx" />
-    <None Include="UI\SelectRace.resx" />
-    <None Include="UI\SkipperMDI.resx" />
-    <None Include="UI\Splash.resx" />
-    <None Include="UI\StatisticsForm.resx" />
-    <None Include="UI\TimeForm.resx" />
-    <None Include="UI\VideoUploadDialog.resx" />
-    <None Include="UI\ViewForm.resx" />
+    <EmbeddedResource Include="UI\ActivationForm.resx" />
+    <EmbeddedResource Include="UI\BookMarksForm.resx" />
+    <EmbeddedResource Include="UI\BusyDialog.resx" />
+    <EmbeddedResource Include="UI\Dashboard.resx" />
+    <EmbeddedResource Include="UI\EditBoat.resx" />
+    <EmbeddedResource Include="UI\EditCourses.resx" />
+    <EmbeddedResource Include="UI\EditRace.resx" />
+    <EmbeddedResource Include="UI\ExistingImageSelect.resx" />
+    <EmbeddedResource Include="UI\GettingStarted.resx" />
+    <EmbeddedResource Include="UI\GraphForm.resx" />
+    <EmbeddedResource Include="UI\ImportFiles.resx" />
+    <EmbeddedResource Include="UI\NewBookMarkDialog.resx" />
+    <EmbeddedResource Include="UI\PhotoManager.resx" />
+    <EmbeddedResource Include="UI\SelectRace.resx" />
+    <EmbeddedResource Include="UI\SkipperMDI.resx" />
+    <EmbeddedResource Include="UI\Splash.resx" />
+    <EmbeddedResource Include="UI\StatisticsForm.resx" />
+    <EmbeddedResource Include="UI\TimeForm.resx" />
+    <EmbeddedResource Include="UI\VideoUploadDialog.resx" />
+    <EmbeddedResource Include="UI\ViewForm.resx" />
     <None Include="UI\Controls\DirectionSelector.resx" />
     <None Include="UI\Controls\LakeResizeControl.resx" />
     <None Include="UI\Import\CSV\ColumnAssignment.resx" />
     <None Include="UI\Import\CSV\ColumnFilter.resx" />
     <None Include="UI\Import\NMEA\NmeaOptions.resx" />
     <None Include="readme.txt" />
-    <None Include="OpenTK.dll.config">
+    <Content Include="Images\average_day.jpg">
+      <LogicalName>average_day.jpg</LogicalName>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Tao.Sdl.dll.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Images\average_day.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Content\tahoma.bmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.WindowsDX.3.7.1.189\lib\net45\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.4.0.1\lib\net45\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct2D1, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct2D1.4.0.1\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D11.4.0.1\lib\net45\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct3D9.4.0.1\lib\net45\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DXGI.4.0.1\lib\net45\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Mathematics.4.0.1\lib\net45\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.MediaFoundation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.MediaFoundation.4.0.1\lib\net45\SharpDX.MediaFoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XAudio2, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.XAudio2.4.0.1\lib\net45\SharpDX.XAudio2.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XInput, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.XInput.4.0.1\lib\net45\SharpDX.XInput.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.ServiceModel" />
@@ -103,8 +125,8 @@
     <Reference Include="System.Net" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="WeifenLuo.WinFormsUI.Docking">
-      <HintPath>..\packages\DockPanelSuite.2.9.0.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.6.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.3.0.6\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
     <Reference Include="ZedGraph">
       <HintPath>..\packages\ZedGraph.5.1.7\lib\net35-Client\ZedGraph.dll</HintPath>
@@ -112,26 +134,8 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Design" />
-    <Reference Include="MonoGame.Framework">
-      <HintPath>..\packages\MonoGame.Framework.Linux.3.4.0.459\lib\net40\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK">
-      <HintPath>..\packages\MonoGame.Framework.Linux.3.4.0.459\lib\net40\OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="Tao.Sdl">
-      <HintPath>..\packages\MonoGame.Framework.Linux.3.4.0.459\lib\net40\Tao.Sdl.dll</HintPath>
-    </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\" />
-    <Folder Include="Data\" />
-    <Folder Include="Executable\" />
-    <Folder Include="Images\" />
-    <Folder Include="Library\" />
-    <Folder Include="Models\" />
-    <Folder Include="Properties\" />
-    <Folder Include="UI\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="Data\Boat.cs" />
     <Compile Include="Data\BoatType.cs" />
@@ -196,72 +200,124 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs" />
     <Compile Include="UI\ActivationForm.Designer.cs" />
-    <Compile Include="UI\ActivationForm.cs" />
+    <Compile Include="UI\ActivationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\BookMarksForm.Designer.cs" />
-    <Compile Include="UI\BookMarksForm.cs" />
+    <Compile Include="UI\BookMarksForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\BusyDialog.Designer.cs" />
-    <Compile Include="UI\BusyDialog.cs" />
+    <Compile Include="UI\BusyDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\BusyDialogManager.cs" />
     <Compile Include="UI\Dashboard.Designer.cs" />
-    <Compile Include="UI\Dashboard.cs" />
+    <Compile Include="UI\Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\EditBoat.Designer.cs" />
-    <Compile Include="UI\EditBoat.cs" />
+    <Compile Include="UI\EditBoat.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\EditCourses.Designer.cs" />
-    <Compile Include="UI\EditCourses.cs" />
+    <Compile Include="UI\EditCourses.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\EditRace.Designer.cs" />
-    <Compile Include="UI\EditRace.cs" />
+    <Compile Include="UI\EditRace.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\ExistingImageSelect.Designer.cs" />
-    <Compile Include="UI\ExistingImageSelect.cs" />
+    <Compile Include="UI\ExistingImageSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\GdiCameraMan.cs" />
     <Compile Include="UI\GdiRenderer.cs" />
     <Compile Include="UI\GettingStarted.Designer.cs" />
-    <Compile Include="UI\GettingStarted.cs" />
+    <Compile Include="UI\GettingStarted.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\GraphForm.Designer.cs" />
-    <Compile Include="UI\GraphForm.cs" />
+    <Compile Include="UI\GraphForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\IViewPort.cs" />
     <Compile Include="UI\ImportFiles.Designer.cs" />
-    <Compile Include="UI\ImportFiles.cs" />
+    <Compile Include="UI\ImportFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\NewBookMarkDialog.Designer.cs" />
-    <Compile Include="UI\NewBookMarkDialog.cs" />
+    <Compile Include="UI\NewBookMarkDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\NullRenderer.cs" />
     <Compile Include="UI\PhotoManager.Designer.cs" />
-    <Compile Include="UI\PhotoManager.cs" />
+    <Compile Include="UI\PhotoManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\Renderer.cs" />
     <Compile Include="UI\Replay.cs" />
     <Compile Include="UI\SelectRace.Designer.cs" />
-    <Compile Include="UI\SelectRace.cs" />
+    <Compile Include="UI\SelectRace.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\SkipperMDI.Designer.cs" />
-    <Compile Include="UI\SkipperMDI.cs" />
+    <Compile Include="UI\SkipperMDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\Splash.Designer.cs" />
-    <Compile Include="UI\Splash.cs" />
+    <Compile Include="UI\Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\StatisticsForm.Designer.cs" />
-    <Compile Include="UI\StatisticsForm.cs" />
+    <Compile Include="UI\StatisticsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\TimeForm.Designer.cs" />
-    <Compile Include="UI\TimeForm.cs" />
+    <Compile Include="UI\TimeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\UIHelper.cs" />
     <Compile Include="UI\VertexDeclarationHelper.cs" />
     <Compile Include="UI\VideoUploadDialog.Designer.cs" />
-    <Compile Include="UI\VideoUploadDialog.cs" />
+    <Compile Include="UI\VideoUploadDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\ViewForm.Designer.cs" />
-    <Compile Include="UI\ViewForm.cs" />
+    <Compile Include="UI\ViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\XnaCameraMan.cs" />
     <Compile Include="UI\XnaRenderer.cs" />
     <Compile Include="UI\Controls\DirectionSelector.Designer.cs" />
-    <Compile Include="UI\Controls\DirectionSelector.cs" />
+    <Compile Include="UI\Controls\DirectionSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UI\Controls\LakeResizeControl.Designer.cs" />
-    <Compile Include="UI\Controls\LakeResizeControl.cs" />
-    <Compile Include="UI\Controls\UserDrawnPanel.cs" />
+    <Compile Include="UI\Controls\LakeResizeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\UserDrawnPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\Controls\TreeGridView\TreeGridCell.cs" />
     <Compile Include="UI\Controls\TreeGridView\TreeGridEvents.cs" />
     <Compile Include="UI\Controls\TreeGridView\TreeGridNode.cs" />
     <Compile Include="UI\Controls\TreeGridView\TreeGridNodeCollection.cs" />
     <Compile Include="UI\Controls\TreeGridView\TreeGridView.cs" />
     <Compile Include="UI\Import\CSV\ColumnAssignment.Designer.cs" />
-    <Compile Include="UI\Import\CSV\ColumnAssignment.cs" />
+    <Compile Include="UI\Import\CSV\ColumnAssignment.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\Import\CSV\ColumnFilter.Designer.cs" />
-    <Compile Include="UI\Import\CSV\ColumnFilter.cs" />
+    <Compile Include="UI\Import\CSV\ColumnFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UI\Import\NMEA\NmeaOptions.Designer.cs" />
-    <Compile Include="UI\Import\NMEA\NmeaOptions.cs" />
+    <Compile Include="UI\Import\NMEA\NmeaOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Library\EmbeddedResourceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -404,4 +460,11 @@
       <LogicalName>boat.jpg</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
+  <Import Project="..\packages\MonoGame.Framework.WindowsDX.3.7.1.189\build\MonoGame.Framework.WindowsDX.targets" Condition="Exists('..\packages\MonoGame.Framework.WindowsDX.3.7.1.189\build\MonoGame.Framework.WindowsDX.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\MonoGame.Framework.WindowsDX.3.7.1.189\build\MonoGame.Framework.WindowsDX.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MonoGame.Framework.WindowsDX.3.7.1.189\build\MonoGame.Framework.WindowsDX.targets'))" />
+  </Target>
 </Project>
