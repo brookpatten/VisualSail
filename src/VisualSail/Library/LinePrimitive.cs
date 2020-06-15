@@ -47,7 +47,7 @@ namespace AmphibianSoftware.VisualSail.Library
         public PrimitiveLine(GraphicsDevice graphicsDevice)
         {
             // create pixels
-            pixel = new Texture2D(graphicsDevice, 1, 1, 1, TextureUsage.None, SurfaceFormat.Color);
+            pixel = new Texture2D(graphicsDevice, 1, 1, false, SurfaceFormat.Color);
             Color[] pixels = new Color[1];
             pixels[0] = Color.White;
             pixel.SetData<Color>(pixels);

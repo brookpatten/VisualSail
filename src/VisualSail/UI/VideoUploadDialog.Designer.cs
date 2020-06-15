@@ -54,7 +54,7 @@
             // 
             // uploadBTN
             // 
-            this.uploadBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.add;
+			this.uploadBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("add.png");
             this.uploadBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.uploadBTN.Location = new System.Drawing.Point(93, 295);
             this.uploadBTN.Name = "uploadBTN";
@@ -221,7 +221,7 @@
             // 
             // cancelBTN
             // 
-            this.cancelBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.cancel;
+			this.cancelBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("cancel.png");
             this.cancelBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cancelBTN.Location = new System.Drawing.Point(199, 295);
             this.cancelBTN.Name = "cancelBTN";
@@ -243,7 +243,7 @@
             this.Controls.Add(this.uploadPB);
             this.Controls.Add(this.uploadBTN);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VideoUploadDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "YouTube Video Upload";

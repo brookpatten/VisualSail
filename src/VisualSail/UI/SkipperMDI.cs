@@ -218,14 +218,10 @@ namespace AmphibianSoftware.VisualSail.UI
             }
             catch (Exception ex)
             {
-#if NOLICENSE
-                throw;
-#else
                 ConfigureMenu(false);
                 _loadedFile = string.Empty;
                 MessageBox.Show("A problem occured loading the file."+Environment.NewLine + ex.Message);
                 ShowGettingStarted();
-#endif
             }
             finally
             {
@@ -556,18 +552,6 @@ namespace AmphibianSoftware.VisualSail.UI
             aboutText.Append("Licensed under the GNU Lesser Public General License");
             aboutText.Append(Environment.NewLine);
             aboutText.Append("(See ZedGraph.License.txt for the complete LGPL)");
-            aboutText.Append(Environment.NewLine);
-            aboutText.Append(Environment.NewLine);
-
-            aboutText.Append("YouTube Upload Capability Created With...");
-            aboutText.Append(Environment.NewLine);
-            aboutText.Append("Google-GData 1.3.1.0");
-            aboutText.Append(Environment.NewLine);
-            aboutText.Append("Copyright 2006 Google Inc.");
-            aboutText.Append(Environment.NewLine);
-            aboutText.Append("Licensed under the Apache License 2.0");
-            aboutText.Append(Environment.NewLine);
-            aboutText.Append("(See Google.GData.License.txt for the complete Apache License 2.0)");
             aboutText.Append(Environment.NewLine);
             aboutText.Append(Environment.NewLine);
 

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Data;
 
-using AmphibianSoftware.VisualSail.PostBuild;
 
 namespace AmphibianSoftware.VisualSail.Data
 {
@@ -14,7 +13,6 @@ namespace AmphibianSoftware.VisualSail.Data
         private string _name;
         private int _lakeId;
         private DateTime _date;
-        [DoNotObfuscate()]
         public enum WindDirectionType {ConstantCourse,ConstantManual,DynamicSensor};
         private WindDirectionType _directionType;
         private double _manualWindDirection;

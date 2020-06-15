@@ -270,7 +270,7 @@
             // hideBTN
             // 
             this.hideBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.hideBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.arrow_left;
+			this.hideBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("arrow_left.png");
             this.hideBTN.Location = new System.Drawing.Point(133, 0);
             this.hideBTN.Name = "hideBTN";
             this.hideBTN.Size = new System.Drawing.Size(26, 22);
@@ -298,7 +298,7 @@
             // 
             // showBTN
             // 
-            this.showBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.arrow_right;
+			this.showBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("arrow_right.png");
             this.showBTN.Location = new System.Drawing.Point(0, 0);
             this.showBTN.Name = "showBTN";
             this.showBTN.Size = new System.Drawing.Size(26, 22);
@@ -678,7 +678,7 @@
             this.pauseRecordingToolStripMenuItem,
             this.endRecordingToolStripMenuItem,
             this.endRecordingAndUploadToYouTubeToolStripMenuItem});
-            this.videoToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.film;
+			this.videoToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("film.png");
             this.videoToolStripMenuItem.Name = "videoToolStripMenuItem";
             this.videoToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.videoToolStripMenuItem.Text = "Video";
@@ -689,7 +689,7 @@
             this.x240ToolStripMenuItem,
             this.x480ToolStripMenuItem2,
             this.x720ToolStripMenuItem});
-            this.startRecordingToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.stop;
+			this.startRecordingToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("stop.png");
             this.startRecordingToolStripMenuItem.Name = "startRecordingToolStripMenuItem";
             this.startRecordingToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.startRecordingToolStripMenuItem.Text = "Record";
@@ -718,7 +718,7 @@
             // 
             // resumeRecordingToolStripMenuItem
             // 
-            this.resumeRecordingToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.resultset_next;
+			this.resumeRecordingToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("resultset_next.png");
             this.resumeRecordingToolStripMenuItem.Name = "resumeRecordingToolStripMenuItem";
             this.resumeRecordingToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.resumeRecordingToolStripMenuItem.Text = "Resume";
@@ -736,7 +736,7 @@
             // endRecordingToolStripMenuItem
             // 
             this.endRecordingToolStripMenuItem.Enabled = false;
-            this.endRecordingToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.film_save;
+			this.endRecordingToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("film_save.png");
             this.endRecordingToolStripMenuItem.Name = "endRecordingToolStripMenuItem";
             this.endRecordingToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.endRecordingToolStripMenuItem.Text = "Stop";
@@ -745,7 +745,7 @@
             // endRecordingAndUploadToYouTubeToolStripMenuItem
             // 
             this.endRecordingAndUploadToYouTubeToolStripMenuItem.Enabled = false;
-            this.endRecordingAndUploadToYouTubeToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.film_link;
+			this.endRecordingAndUploadToYouTubeToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("film_link.png");
             this.endRecordingAndUploadToYouTubeToolStripMenuItem.Name = "endRecordingAndUploadToYouTubeToolStripMenuItem";
             this.endRecordingAndUploadToYouTubeToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.endRecordingAndUploadToYouTubeToolStripMenuItem.Text = "Stop and YouTube";
@@ -753,7 +753,7 @@
             // 
             // imageToolStripMenuItem
             // 
-            this.imageToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.image;
+			this.imageToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("image.png");
             this.imageToolStripMenuItem.Name = "imageToolStripMenuItem";
             this.imageToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.imageToolStripMenuItem.Text = "Image";
@@ -827,7 +827,7 @@
             this.Controls.Add(this.controlPNL);
             this.Controls.Add(this.mainMenuStrip);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mainMenuStrip;
             this.MaximumSize = new System.Drawing.Size(1024, 768);
             this.Name = "ViewForm";

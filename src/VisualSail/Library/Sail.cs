@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using AmphibianSoftware.VisualSail.PostBuild;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
 
 namespace AmphibianSoftware.VisualSail.Library
 {
@@ -22,14 +20,13 @@ namespace AmphibianSoftware.VisualSail.Library
             public static int SizeInBytes = 7 * 4;
             public static VertexElement[] VertexElements = new VertexElement[]
               {
-                  new VertexElement( 0, 0, VertexElementFormat.Vector3, VertexElementMethod.Default, VertexElementUsage.Position, 0 ),
-                  new VertexElement( 0, sizeof(float) * 3, VertexElementFormat.Color, VertexElementMethod.Default, VertexElementUsage.Color, 0 ),
-                  new VertexElement( 0, sizeof(float) * 4, VertexElementFormat.Vector3, VertexElementMethod.Default, VertexElementUsage.Normal, 0 ),
+                  	new VertexElement( 0, VertexElementFormat.Vector3, VertexElementUsage.Position, 0 ),
+                  	new VertexElement( sizeof(float) * 3, VertexElementFormat.Color, VertexElementUsage.Color, 0 ),
+					new VertexElement( sizeof(float) * 3 + sizeof(float) * 4, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0 ),
               };
         }
     public class Sail
     {
-        [DoNotObfuscate()]
         public enum SailType{Main,Jib,Spinnaker}
         private SailType _sailType;
         private float _height;
@@ -79,7 +76,8 @@ namespace AmphibianSoftware.VisualSail.Library
                 for (int i = 0; i < curvePoints.Count; i++)
                 {
                     _vertexes[i].Position = curvePoints[i];
-                    _vertexes[i].Color = Microsoft.Xna.Framework.Graphics.Color.WhiteSmoke;
+
+                    _vertexes[i].Color = Microsoft.Xna.Framework.Color.WhiteSmoke;
                 }
             }
             else if (_sailType == SailType.Jib)
@@ -94,7 +92,7 @@ namespace AmphibianSoftware.VisualSail.Library
                 for (int i = 0; i < curvePoints.Count; i++)
                 {
                     _vertexes[i].Position = curvePoints[i];
-                    _vertexes[i].Color = Microsoft.Xna.Framework.Graphics.Color.WhiteSmoke;
+                    _vertexes[i].Color = Microsoft.Xna.Framework.Color.WhiteSmoke;
                 }
             }
 
@@ -126,8 +124,8 @@ namespace AmphibianSoftware.VisualSail.Library
         }
         public void Draw(GraphicsDevice dev)
         {
-            dev.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionNormalColored));
-            dev.DrawUserPrimitives<VertexPositionNormalColored>(PrimitiveType.TriangleFan, _vertexes, 0, _vertexes.Length-2);
+            //dev.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionNormalColored));
+            //dev.DrawUserPrimitives<VertexPositionNormalColored>(PrimitiveType.TriangleFan, _vertexes, 0, _vertexes.Length-2);
         }
         public void Draw(GraphicsDevice dev,float depth,float offset)
         {

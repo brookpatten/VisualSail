@@ -12,7 +12,6 @@ using System.Drawing;
 using Microsoft.Xna.Framework;
 
 using AmphibianSoftware.VisualSail.Data;
-using AmphibianSoftware.Video;
 using AmphibianSoftware.VisualSail.Library;
 using AmphibianSoftware.VisualSail.Data.Statistics;
 
@@ -395,7 +394,7 @@ namespace AmphibianSoftware.VisualSail.UI
             _graphics[target].Transform = new System.Drawing.Drawing2D.Matrix();
 
             //clear the buffer to black
-            _graphics[target].Clear(Color.Black);
+			_graphics[target].Clear(System.Drawing.Color.Black);
             //_graphics[target].FillRectangle(Brushes.Black, 0, 0, _buffers[target].Width, _buffers[target].Height);
 
             int xOffset = target.RenderTarget.Width / 2;

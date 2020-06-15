@@ -12,12 +12,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Storage;
 
 using AmphibianSoftware.VisualSail.Data;
-using AmphibianSoftware.Video;
 using AmphibianSoftware.VisualSail.Library;
 using AmphibianSoftware.VisualSail.Data.Statistics;
+
 
 namespace AmphibianSoftware.VisualSail.UI
 {
@@ -50,7 +49,6 @@ namespace AmphibianSoftware.VisualSail.UI
         //xna stuff
         private Game _game;
         private BoundingBox _worldBounds;
-        private XnaAviWriter _xnaAviWriter;
         private PrimitiveLine _line;
         private VertexPositionColor[] _gridLines;
         private VertexPositionTexture[] _skybox;
@@ -69,7 +67,7 @@ namespace AmphibianSoftware.VisualSail.UI
         private Texture2D _mouseTexture;
         private Texture2D _mouseLeftTexture;
         private Texture2D _mouseRightTexture;
-        private SpriteBatch _batch;
+        private Microsoft.Xna.Framework.Graphics.SpriteBatch _batch;
         private SpriteFont _font;
 
         public XnaRenderer()
@@ -100,19 +98,23 @@ namespace AmphibianSoftware.VisualSail.UI
             }
 
             _game = new Game();
-            _graphics = new GraphicsDeviceManager(_game);
-            _graphics.IsFullScreen = false;
-            //_graphics.PreparingDeviceSettings += new EventHandler<PreparingDeviceSettingsEventArgs>(_graphics_PreparingDeviceSettings);
+			_graphics = new GraphicsDeviceManager(_game);
+            //_graphics.CreateDevice ();
+            
+			_graphics.IsFullScreen = false;
+            _graphics.PreparingDeviceSettings += new EventHandler<PreparingDeviceSettingsEventArgs>(_graphics_PreparingDeviceSettings);
             Resize();
             _content = new ContentManager(_game.Services);
-            _content.RootDirectory = "";
-            _graphics.DeviceReset += new EventHandler(graphics_DeviceReset);
+			_content.RootDirectory = "";//GetContentPath("");
+			_graphics.DeviceReset += new EventHandler<EventArgs>(graphics_DeviceReset);
         }
 
         void _graphics_PreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
         {
-            e.GraphicsDeviceInformation.DeviceType = DeviceType.Reference;
-            e.GraphicsDeviceInformation.PresentationParameters.MultiSampleType = MultiSampleType.None;
+			e.GraphicsDeviceInformation.GraphicsProfile = GraphicsProfile.Reach;
+			e.GraphicsDeviceInformation.PresentationParameters.MultiSampleCount = 0;
+            //e.GraphicsDeviceInformation.DeviceType = DeviceType.Reference;
+            //e.GraphicsDeviceInformation.PresentationParameters.MultiSampleType = MultiSampleType.None;
         }
         public override void Reset()
         {
@@ -128,19 +130,35 @@ namespace AmphibianSoftware.VisualSail.UI
         {
             _graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;//_backBufferWidth;
             _graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;//_backBufferHeight;
+            
             _graphics.ApplyChanges();
 
-            _device = _graphics.GraphicsDevice;
-            _device.RenderState.AlphaBlendEnable = true;
-            _device.RenderState.SourceBlend = Blend.SourceAlpha; // source rgb * source alpha
-            _device.RenderState.DestinationBlend = Blend.InverseSourceAlpha; // dest rgb * (255 - source alpha)
-            _device.RenderState.CullMode = CullMode.None;
-            //camera.Resize(_target.Width, _target.Height);
+			_device = _graphics.GraphicsDevice;
+            
+			if (_device == null) 
+			{
+				throw new InvalidOperationException ("GraphicsDevice is null");
+			}
 
-            VertexDeclarationHelper.Add(typeof(VertexPositionColor), new VertexDeclaration(_device, VertexPositionColor.VertexElements));
-            VertexDeclarationHelper.Add(typeof(VertexPositionNormalColored), new VertexDeclaration(_device, VertexPositionNormalColored.VertexElements));
+			//_device.RenderState.AlphaBlendEnable = true;
+			//_device.RenderState.SourceBlend = Blend.SourceAlpha; // source rgb * source alpha
+			if (_device.BlendState == null) 
+			{
+				_device.BlendState = BlendState.AlphaBlend;
+			}
+			//_device.BlendState.AlphaSourceBlend = Blend.SourceAlpha;
+            //_device.RenderState.DestinationBlend = Blend.InverseSourceAlpha; // dest rgb * (255 - source alpha)
+			//_device.RenderState.CullMode = CullMode.None;
+			if (_device.RasterizerState == null) 
+			{
+				_device.RasterizerState = RasterizerState.CullNone;
+			}
+			//camera.Resize(_target.Width, _target.Height);
+
+			VertexDeclarationHelper.Add(typeof(VertexPositionColor), VertexPositionColor.VertexDeclaration);
+            VertexDeclarationHelper.Add(typeof(VertexPositionNormalColored), new VertexDeclaration(VertexPositionNormalColored.VertexElements));
             //VertexDeclarationHelper.Add(typeof(AmphibianSoftware.VisualSail.UI.Ocean.VertexMultitextured), new VertexDeclaration(device, AmphibianSoftware.VisualSail.UI.Ocean.VertexMultitextured.VertexElements));
-            VertexDeclarationHelper.Add(typeof(VertexPositionTexture), new VertexDeclaration(_device, VertexPositionTexture.VertexElements));
+			VertexDeclarationHelper.Add(typeof(VertexPositionTexture),  VertexPositionTexture.VertexDeclaration);
         }
         private void LoadContent()
         {
@@ -156,46 +174,48 @@ namespace AmphibianSoftware.VisualSail.UI
             //{
             //    b.LoadResources(_device, _content);
             //}
-            _skyTexture = LoadAndScaleTexture(ContentHelper.StaticContentPath + "average_day.jpg", _device);
-            _mouseTexture = _content.Load<Texture2D>(ContentHelper.StaticContentPath + "mouse");
-            _mouseLeftTexture = _content.Load<Texture2D>(ContentHelper.StaticContentPath + "mouse-left");
-            _mouseRightTexture = _content.Load<Texture2D>(ContentHelper.StaticContentPath + "mouse-right");
+            _skyTexture = LoadAndScaleTexture("average_day.jpg",false, _device);
 
-            _lakeTextureEffect = new BasicEffect(_device, null);
-            if (!File.Exists(ContentHelper.DynamicContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West)))
-            {
-                try
-                {
-                    string lakeFile = SatelliteImageryHelper.GetSatelliteImage(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West, (int)this.Race.Lake.WidthInMeters / 10, (int)this.Race.Lake.HeightInMeters / 10);
-                    //FileInfo fi = new FileInfo(lakeFile);
-                    //fi.MoveTo(ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
-                }
-                catch //(Exception e)
-                {
-                }
-            }
-            try
-            {
-                _lakeTexture = LoadAndScaleTexture(ContentHelper.DynamicContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West), _device);
-                //_lakeTexture = Texture2D.FromFile(device, ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
-                //_lakeTexture = content.Load<Texture2D>(ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
-                _lakeTextureEffect.Texture = _lakeTexture;
-                _lakeTextureEffect.TextureEnabled = true;
-                _lakeTextureAvailible = true;
+			_mouseTexture = LoadAndScaleTexture("mouse.png",true, _device);
+			_mouseLeftTexture = LoadAndScaleTexture("mouse-left.png",true, _device);
+			_mouseRightTexture = LoadAndScaleTexture("mouse-right.png",true, _device);
 
-                //lakeTextureEffect.FogEnabled = true;
-                //lakeTextureEffect.FogColor = Color.White.ToVector3();
-                //lakeTextureEffect.FogStart = Camera.FarClipDistance - 300;
-                //lakeTextureEffect.FogEnd = Camera.FarClipDistance;
-                //MessageBox.Show("Loaded lake texture:"+_lakeTexture.Width+"x"+_lakeTexture.Height);
-            }
-            catch (Exception /*e*/)
-            {
+            _lakeTextureEffect = new BasicEffect(_device);
+//            if (!File.Exists(ContentHelper.DynamicContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West)))
+//            {
+//                try
+//                {
+//                    string lakeFile = SatelliteImageryHelper.GetSatelliteImage(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West, (int)this.Race.Lake.WidthInMeters / 10, (int)this.Race.Lake.HeightInMeters / 10);
+//                    //FileInfo fi = new FileInfo(lakeFile);
+//                    //fi.MoveTo(ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
+//                }
+//                catch //(Exception e)
+//                {
+//                }
+//            }
+			//imagery doesn't work anymore since the nasa service went down
+//            try
+//            {
+//                _lakeTexture = LoadAndScaleTexture(SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West), _device);
+//                //_lakeTexture = Texture2D.FromFile(device, ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
+//                //_lakeTexture = content.Load<Texture2D>(ContentHelper.ContentPath + SatelliteImageryHelper.GetFileName(this.Race.Lake.North, this.Race.Lake.South, this.Race.Lake.East, this.Race.Lake.West));
+//                _lakeTextureEffect.Texture = _lakeTexture;
+//                _lakeTextureEffect.TextureEnabled = true;
+//                _lakeTextureAvailible = true;
+//
+//                //lakeTextureEffect.FogEnabled = true;
+//                //lakeTextureEffect.FogColor = Color.White.ToVector3();
+//                //lakeTextureEffect.FogStart = Camera.FarClipDistance - 300;
+//                //lakeTextureEffect.FogEnd = Camera.FarClipDistance;
+//                //MessageBox.Show("Loaded lake texture:"+_lakeTexture.Width+"x"+_lakeTexture.Height);
+//            }
+//            catch (Exception /*e*/)
+//            {
                 //MessageBox.Show("Failed to load area texture." + e.Message + ":" + e.StackTrace);
                 _lakeTextureAvailible = false;
-            }
+            //}
 
-            _skyBoxEffect = new BasicEffect(_device, null);
+            _skyBoxEffect = new BasicEffect(_device);
             _skyBoxEffect.Texture = _skyTexture;
             _skyBoxEffect.TextureEnabled = true;
             _skyBoxEffect.FogEnabled = true;
@@ -211,19 +231,24 @@ namespace AmphibianSoftware.VisualSail.UI
             //effect = new BasicEffect(device, null);
             //effect.EnableDefaultLighting();
 
-            _instruments = new BasicEffect(_device, null);
+            _instruments = new BasicEffect(_device);
             _instruments.VertexColorEnabled = true;
 
             //text = new BasicEffect(device, null);
 
-            _font = _content.Load<SpriteFont>(ContentHelper.StaticContentPath + "tahoma");
+			_font=_content.Load<SpriteFont> (GetContentPath ("tahoma"));
+            //_font = _content.Load<SpriteFont>(ContentHelper.StaticContentPath + "tahoma");
             _batch = new SpriteBatch(_device);
             _line = new PrimitiveLine(_device);
 
             //_photos = Photo.FindInDateRange(this.Race.LocalCountdownStart, this.Race.LocalEnd);
-            _bouyModel = _content.Load<Model>(ContentHelper.StaticContentPath + "bouy");
-            _boatModel = _content.Load<Model>(ContentHelper.StaticContentPath + "ship");
-            _sailEffect = new BasicEffect(_device, null);
+            //_bouyModel = _content.Load<Model>(ContentHelper.StaticContentPath + "bouy");
+            //_boatModel = _content.Load<Model>(ContentHelper.StaticContentPath + "ship");
+
+			_bouyModel =_content.Load<Model> (GetContentPath ("bouy"));
+			_boatModel = _content.Load<Model> (GetContentPath ("ship"));
+
+			_sailEffect = new BasicEffect(_device);
             _sailEffect.EnableDefaultLighting();
             //System.Drawing.Color c=System.Drawing.Color.FromArgb(_boatData.Color);
             //_color = new Vector3((float)c.R / 255.0f, (float)c.G / 255.0f, (float)c.B / 255.0f);
@@ -231,7 +256,7 @@ namespace AmphibianSoftware.VisualSail.UI
             _sailEffect.DirectionalLight0.SpecularColor = new Vector3(1, 1, 1);
             //sailEffect.AmbientLightColor = _color;
             _sailEffect.VertexColorEnabled = true;
-            _hudEffect = new BasicEffect(_device, null);
+            _hudEffect = new BasicEffect(_device);
             _hudEffect.VertexColorEnabled = true;
         }
         private void SetUpGridLines()
@@ -361,11 +386,11 @@ namespace AmphibianSoftware.VisualSail.UI
         public override void Shutdown()
         {
             VertexDeclarationHelper.Clear();
-            try
-            {
-                _device.EvictManagedResources();
-            }
-            catch { };
+            //try
+            //{
+				//_device.EvictManagedResources();
+            //}
+            //catch { };
             _device.Dispose();
             _content.Dispose();
             _instruments.Dispose();
@@ -437,7 +462,7 @@ namespace AmphibianSoftware.VisualSail.UI
         {
             //fps limiter
             DateTime n = DateTime.Now;
-            if (n - _previousRenderTime >= new TimeSpan(0, 0, 0, 0, 30))
+            if (n - _previousRenderTime >= new TimeSpan(0, 0, 0, 0, 15))
             {
                 lock (_viewports)
                 {
@@ -461,29 +486,9 @@ namespace AmphibianSoftware.VisualSail.UI
                                 vp.Record = RecorderState.Disabled;
                             }
                         }
-                        //make sure the recorder is ready to go
-                        if (_xnaAviWriter == null || !_xnaAviWriter.Recording)
-                        {
-                            try
-                            {
-                                _xnaAviWriter = new XnaAviWriter(_device);
-                                _xnaAviWriter.VideoInitialize(recordingViewport.RecordingPath, 25, recordingViewport.RecordingSize.Width, recordingViewport.RecordingSize.Height);
-                                RenderVideoTitle();
-                            }
-                            catch (Exception message)
-                            {
-                                MessageBox.Show("A problem occured while starting the recording." + Environment.NewLine + message.Message);
-                                recordingViewport.Record = RecorderState.Ready;
-                            }
-                        }
                     }
                     else
                     {
-                        if (_xnaAviWriter != null && _xnaAviWriter.Recording)
-                        {
-                            _xnaAviWriter.Close();
-                            _xnaAviWriter = null;
-                        }
                         foreach (IViewPort vp in _viewports.Keys)
                         {
                             vp.RecordingPath = null;
@@ -493,22 +498,11 @@ namespace AmphibianSoftware.VisualSail.UI
 
                     foreach (IViewPort vp in _viewports.Keys)
                     {
+                        _device.PresentationParameters.DeviceWindowHandle = vp.RenderTarget.Handle;
+                        _graphics.ApplyChanges();
                         Render(vp);
                         if (vp.ScreenshotPath != null && vp.RecordingSize.Width > 0 && vp.RecordingSize.Height > 0)
                         {
-                            try
-                            {
-                                if (_xnaAviWriter == null)
-                                {
-                                    _xnaAviWriter = new XnaAviWriter(_device);
-                                }
-                                _xnaAviWriter.ScreenShot(vp.ScreenshotPath, vp.RecordingSize.Width, vp.RecordingSize.Height);
-                                _xnaAviWriter = null;
-                            }
-                            catch
-                            {
-                                MessageBox.Show("The image could not be captured to the specified file");
-                            }
                             vp.ScreenshotPath = null;
                         }
                     }
@@ -571,41 +565,44 @@ namespace AmphibianSoftware.VisualSail.UI
                         textureTris[0].Position.Y = -0.5f;
                         camera.ConfigureBasicEffect(_lakeTextureEffect);
                         _lakeTextureEffect.World = Matrix.Identity;
-                        _lakeTextureEffect.Begin();
+						//_lakeTextureEffect.Begin();
                         foreach (EffectPass pass in _lakeTextureEffect.CurrentTechnique.Passes)
                         {
-                            pass.Begin();
-                            _device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionTexture));
+							pass.Apply ();
+                            //pass.Begin();
+							//_device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionTexture));
                             _device.DrawUserPrimitives<VertexPositionTexture>(PrimitiveType.TriangleStrip, textureTris, 0, 2);
-                            pass.End();
+                            //pass.End();
                         }
-                        _lakeTextureEffect.End();
+                        //_lakeTextureEffect.End();
                     }
                     camera.ConfigureBasicEffect(_skyBoxEffect);
                     _skyBoxEffect.World = Matrix.Identity;
-                    _skyBoxEffect.Begin();
+                    //_skyBoxEffect.Begin();
                     foreach (EffectPass pass in _skyBoxEffect.CurrentTechnique.Passes)
                     {
-                        pass.Begin();
-                        _device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionTexture));
+						pass.Apply ();
+                        //pass.Begin();
+                        //_device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionTexture));
                         _device.DrawUserPrimitives<VertexPositionTexture>(PrimitiveType.TriangleStrip, _skybox, 0, 8);
-                        pass.End();
+                        //pass.End();
                     }
-                    _skyBoxEffect.End();
+                    //_skyBoxEffect.End();
                 }
 
                 if (cameraMan.DrawGrid)
                 {
                     _instruments.World = Matrix.Identity;
-                    _instruments.Begin();
+                    //_instruments.Begin();
                     foreach (EffectPass pass in _instruments.CurrentTechnique.Passes)
                     {
-                        pass.Begin();
-                        _device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionColor));
+						pass.Apply ();
+                        //pass.Begin();
+                        //_device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionColor));
                         _device.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.LineList, _gridLines, 0, _gridLines.Length / 2);
-                        pass.End();
+                        //pass.End();
                     }
-                    _instruments.End();
+                    //_instruments.End();
                 }
                 Dictionary<ReplayBoat, Vector2> locations = new Dictionary<ReplayBoat, Vector2>();
                 foreach (ReplayBoat b in this.Replay.Boats)
@@ -676,7 +673,9 @@ namespace AmphibianSoftware.VisualSail.UI
 
                 if (cameraMan.ShowAnyIdentifiers || cameraMan.ShowMarkNames || cameraMan.DrawPlaybackSpeed || cameraMan.PhotoMode != CameraMan.PhotoDisplayMode.Disabled)
                 {
-                    _batch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.SaveState);
+					_batch.Begin (SpriteSortMode.Deferred, BlendState.AlphaBlend);
+                    //TODO: what was savestatemode and how is it implemented in mono
+					//_batch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.SaveState);
                     List<BoundingBox> labelBoxBounds = new List<BoundingBox>();
 
                     //if (cameraMan.PhotoMode != CameraMan.PhotoDisplayMode.Disabled)
@@ -834,8 +833,16 @@ namespace AmphibianSoftware.VisualSail.UI
                     {
                         lock (target.RenderTarget)
                         {
-                            _device.Present(new Rectangle(0, 0, _device.Viewport.Width, _device.Viewport.Height), new Rectangle(0, 0, _device.Viewport.Width, _device.Viewport.Height), target.RenderTarget.Handle);
-
+							_device.PresentationParameters.DeviceWindowHandle = target.RenderTarget.Handle;
+							_device.PresentationParameters.BackBufferWidth = _device.Viewport.Width;
+							_device.PresentationParameters.BackBufferHeight = _device.Viewport.Height;
+                            _graphics.ApplyChanges();
+                            
+							//TODO: make this render to a texture and render it in GDI?
+                            
+                            //_device.Present(new Rectangle(0, 0, _device.Viewport.Width, _device.Viewport.Height), new Rectangle(0, 0, _device.Viewport.Width, _device.Viewport.Height), target.RenderTarget.Handle);
+							_device.Present();
+                            
                         }
                     }
                     else
@@ -843,30 +850,19 @@ namespace AmphibianSoftware.VisualSail.UI
                         throw new InvalidOperationException("No Handle");
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //if the windows are being docked/undocked or similiar, the handle might get destroyed mid-draw
                     //it's ok if this happens, we'll just draw again on the next frame.
                     //this is hacky, but i can't find a better way to prevent or catch this issue
                 }
 
-                if (target.Record == RecorderState.Recording && _xnaAviWriter != null && _xnaAviWriter.Recording)
-                {
-                    try
-                    {
-                        _xnaAviWriter.AddFrame();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("The video codec or compression you selected is not compatible with VisualSail");
-                        target.Record = RecorderState.Ready;
-                    }
-                }
             }
         }
         public void DrawHUD(ReplayBoat boat, GraphicsDevice device, XnaCameraMan cameraMan, DateTime time, float coordinateDivisor)
         {
-            device.RenderState.DepthBufferEnable = false;
+			//device.DepthStencilState.DepthBufferEnable = false;
+            //device.RenderState.DepthBufferEnable = false;
             Camera camera = cameraMan.Camera;
             float angle = boat.Angle;
             if (boat.Direction == ReplayBoat.BoatDirection.Backwards)
@@ -878,11 +874,12 @@ namespace AmphibianSoftware.VisualSail.UI
 
             camera.ConfigureBasicEffect(_hudEffect);
             _hudEffect.World = Matrix.Identity;
-            _hudEffect.Begin();
+            //_hudEffect.Begin();
 
             foreach (EffectPass pass in _hudEffect.CurrentTechnique.Passes)
             {
-                pass.Begin();
+				pass.Apply ();
+                //pass.Begin();
                 if (cameraMan.DrawPastPath || cameraMan.DrawFuturePath)
                 {
                     DateTime startTime = boat.SensorReadings[boat.CurrentSensorReadingIndex].datetime;
@@ -935,24 +932,24 @@ namespace AmphibianSoftware.VisualSail.UI
                             Color c = new Color(new Vector4(boat.Color.R, boat.Color.G, boat.Color.B, alpha));
                             _boatPathCurve[boat][i].Color = c;
                         }
-                        device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionColor));
+                        //device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionColor));
                         device.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleStrip, _boatPathCurve[boat], curveStart, curveLength * 2);
                     }
                 }
-                pass.End();
+                //pass.End();
             }
 
-            _hudEffect.End();
+            //_hudEffect.End();
 
             if (boat.CurrentRacingStatus != ReplayBoat.RacingStatus.Finished && cameraMan.DrawAngleToMark)
             {
                 //float angleToMark = AngleHelper.FindAngle(CurrentMarkLocation.ToWorld(), ProjectedPoint.ToWorld());
-                DrawInstrument(device, InstrumentDrawing.OutwardArrow, Microsoft.Xna.Framework.Graphics.Color.Orange, ProjectedPointToWorld(boat.ProjectedPoint), boat.Angle, 0.5f, 0.5f);
+                DrawInstrument(device, InstrumentDrawing.OutwardArrow, Microsoft.Xna.Framework.Color.Orange, ProjectedPointToWorld(boat.ProjectedPoint), boat.Angle, 0.5f, 0.5f);
             }
 
             if (cameraMan.DrawAngleToWind)
             {
-                DrawInstrument(device, InstrumentDrawing.InwardArrow, Microsoft.Xna.Framework.Graphics.Color.Green, ProjectedPointToWorld(boat.ProjectedPoint), Replay.WindAngle + MathHelper.Pi, 0.5f, 0.5f);
+                DrawInstrument(device, InstrumentDrawing.InwardArrow, Microsoft.Xna.Framework.Color.Green, ProjectedPointToWorld(boat.ProjectedPoint), Replay.WindAngle + MathHelper.Pi, 0.5f, 0.5f);
             }
 
             if (cameraMan.DrawAbsoluteAngleReference || cameraMan.DrawRelativeAngleReference)
@@ -975,25 +972,27 @@ namespace AmphibianSoftware.VisualSail.UI
                         {
                             id = InstrumentDrawing.OutwardArrow;
                         }
-                        DrawInstrument(device, id, Microsoft.Xna.Framework.Graphics.Color.Gray, ProjectedPointToWorld(boat.ProjectedPoint), a + boat.Angle, 1.0f - length, length);
+                        DrawInstrument(device, id, Microsoft.Xna.Framework.Color.Gray, ProjectedPointToWorld(boat.ProjectedPoint), a + boat.Angle, 1.0f - length, length);
                     }
                     if (cameraMan.DrawAbsoluteAngleReference)
                     {
-                        DrawInstrument(device, InstrumentDrawing.Line, Microsoft.Xna.Framework.Graphics.Color.LightGray, ProjectedPointToWorld(boat.ProjectedPoint), a, 1.0f, length);
+                        DrawInstrument(device, InstrumentDrawing.Line, Microsoft.Xna.Framework.Color.LightGray, ProjectedPointToWorld(boat.ProjectedPoint), a, 1.0f, length);
                     }
                     line++;
                 }
             }
-            device.RenderState.DepthBufferEnable = true;
+			//device.DepthStencilState.DepthBufferEnable = true;
+            //device.RenderState.DepthBufferEnable = true;
         }
         private void DrawInstrument(GraphicsDevice device, InstrumentDrawing drawingType, Color color, Vector3 location, float rotation, float startDistance, float length)
         {
             float tipSize = 0.05f;
             _hudEffect.World = Matrix.CreateRotationY(rotation) * Matrix.CreateTranslation(location);
-            _hudEffect.Begin();
+            //_hudEffect.Begin();
             foreach (EffectPass pass in _hudEffect.CurrentTechnique.Passes)
             {
-                pass.Begin();
+				pass.Apply ();
+                //pass.Begin();
 
                 VertexPositionColor[] vs;
                 vs = new VertexPositionColor[6];
@@ -1027,12 +1026,12 @@ namespace AmphibianSoftware.VisualSail.UI
                     vs[5].Color = color;
                 }
 
-                device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionColor));
+                //device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionColor));
                 device.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.LineList, vs, 0, 3);
 
-                pass.End();
+                //pass.End();
             }
-            _hudEffect.End();
+            //_hudEffect.End();
         }
         public void BuildBoatPathCurve(ReplayBoat boat)
         {
@@ -1127,25 +1126,27 @@ namespace AmphibianSoftware.VisualSail.UI
 
                 camera.ConfigureBasicEffect(_sailEffect);
                 _sailEffect.World = Matrix.CreateScale(0.1f) * Matrix.CreateRotationY(boat.BoomAngle) * Matrix.CreateTranslation(new Vector3(0f, 0f, 0.25f)) * Matrix.CreateTranslation(new Vector3(0, 0, -0.36f)) * Matrix.CreateRotationZ(MathHelper.ToRadians(-boat.Heel)) * Matrix.CreateRotationY(MathHelper.ToRadians(270.0f) + angle) * Matrix.CreateTranslation(ProjectedPointToWorld(boat.ProjectedPoint));
-                _sailEffect.Begin();
+                //_sailEffect.Begin();
                 foreach (EffectPass pass in _sailEffect.CurrentTechnique.Passes)
                 {
-                    pass.Begin();
+					pass.Apply ();
+                    //pass.Begin();
                     _boatMains[boat].Draw(device, boat.SailCurve, 0);
-                    pass.End();
+                    //pass.End();
                 }
-                _sailEffect.End();
+                //_sailEffect.End();
 
                 camera.ConfigureBasicEffect(_sailEffect);
                 _sailEffect.World = Matrix.CreateScale(0.1f) /** Matrix.CreateRotationY(currentBoomAngle)*/ * Matrix.CreateTranslation(new Vector3(0f, 0f, 0.25f)) * Matrix.CreateTranslation(new Vector3(0, 0, -0.36f)) * Matrix.CreateRotationZ(MathHelper.ToRadians(-boat.Heel)) * Matrix.CreateRotationY(MathHelper.ToRadians(270.0f) + angle) * Matrix.CreateTranslation(ProjectedPointToWorld(boat.ProjectedPoint));
-                _sailEffect.Begin();
+                //_sailEffect.Begin();
                 foreach (EffectPass pass in _sailEffect.CurrentTechnique.Passes)
                 {
-                    pass.Begin();
+                	pass.Apply();
+                    //pass.Begin();
                     _boatJibs[boat].Draw(device, boat.SailCurve, (boat.BoomAngle * 80f) * 0.02f);
-                    pass.End();
+                    //pass.End();
                 }
-                _sailEffect.End();
+                //_sailEffect.End();
             }
         }
         public void DrawBouy(Bouy bouy,GraphicsDevice device, Camera camera)
@@ -1165,12 +1166,62 @@ namespace AmphibianSoftware.VisualSail.UI
                 mesh.Draw();
             }
         }
-        private Texture2D LoadAndScaleTexture(string texturePath, GraphicsDevice device)
+
+		private string GetContentPath(string name)
+		{
+			string exePath = System.Reflection.Assembly.GetEntryAssembly().CodeBase;
+    		if(exePath.StartsWith("file:///"))
+    		{
+                exePath = exePath = exePath.Replace("file:///", "");
+    		}
+    		string exeDir = Path.GetDirectoryName(exePath);
+    		string imageDir = Path.Combine(exeDir,"Content");
+    		string filePath = Path.Combine(imageDir,name);
+    		return filePath;
+		}
+
+        private Texture2D LoadAndScaleTexture(string texturePath,bool embedded, GraphicsDevice device)
         {
-            TextureInformation ti = Texture2D.GetTextureInformation(texturePath);
+        	if(embedded)
+        	{
+				using(var image = EmbeddedResourceHelper.LoadImage(texturePath))
+				{
+					using(var mem = new MemoryStream())
+					{
+						image.Save(mem,System.Drawing.Imaging.ImageFormat.Bmp);
+						mem.Position=0;
+						var texture = Texture2D.FromStream(device,mem);
+						mem.Close();
+						return texture;
+					}
+				}
+			}
+        	else
+        	{
+        		string exePath = System.Reflection.Assembly.GetEntryAssembly().CodeBase;
+        		if(exePath.StartsWith("file:///"))
+        		{
+                    exePath = exePath = exePath.Replace("file:///", "");
+        		}
+        		string exeDir = Path.GetDirectoryName(exePath);
+        		string imageDir = Path.Combine(exeDir,"Images");
+        		string filePath = Path.Combine(imageDir,texturePath);
+	        	Texture2D texture;
+				using(var fs = new FileStream(filePath,FileMode.Open))
+				{
+					texture = Texture2D.FromStream(device,fs);
+					fs.Close();
+					return texture;
+				}
+
+			}
+
+			//it seems like monogame does the resizing for us where xna didn't?
+			//we shall see
+            /*TextureInformation ti = Texture2D.GetTextureInformation(texturePath);
             int bigTexture = ti.Width >= ti.Height ? ti.Width : ti.Height;
             int smallDevice = device.GraphicsDeviceCapabilities.MaxTextureWidth <= device.GraphicsDeviceCapabilities.MaxTextureHeight ? device.GraphicsDeviceCapabilities.MaxTextureWidth : device.GraphicsDeviceCapabilities.MaxTextureHeight;
-
+            
             int desiredSize = bigTexture >= smallDevice ? smallDevice : bigTexture;
 
 
@@ -1182,9 +1233,9 @@ namespace AmphibianSoftware.VisualSail.UI
             desiredSizePow2 |= desiredSizePow2 >> 8;
             desiredSizePow2 |= desiredSizePow2 >> 16;
             desiredSizePow2++;
-
+            
             Texture2D ret = Texture2D.FromFile(device, texturePath, desiredSizePow2, desiredSizePow2);
-            return ret;
+            return ret;*/
         }
         private float ScaleFontToFitWidth(string s, float desiredWidth)
         {
@@ -1200,7 +1251,9 @@ namespace AmphibianSoftware.VisualSail.UI
         {
             if (time < new TimeSpan(0, 0, 12) && viewportWidth >= 320 && viewportHeight >= 240)
             {
-                _batch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.SaveState);
+				_batch.Begin (sortMode: SpriteSortMode.Deferred, blendState: BlendState.AlphaBlend);
+				//TODO: figure out what savestatemode did in xna
+                //_batch.Begin(SpriteBlendMode.AlphaBlend, SpriteSortMode.Deferred, SaveStateMode.SaveState);
 
                 string instructions;
                 Texture2D texture;
@@ -1483,10 +1536,11 @@ namespace AmphibianSoftware.VisualSail.UI
         {
             float tipSize = 0.05f;
             _instruments.World = Matrix.CreateRotationY(rotation) * Matrix.CreateTranslation(location);
-            _instruments.Begin();
+            //_instruments.Begin();
             foreach (EffectPass pass in _instruments.CurrentTechnique.Passes)
             {
-                pass.Begin();
+            	pass.Apply();
+                //pass.Begin();
 
                 VertexPositionColor[] vs;
                 vs = new VertexPositionColor[6];
@@ -1519,14 +1573,16 @@ namespace AmphibianSoftware.VisualSail.UI
                     vs[5].Position = new Vector3(startDistance + length - (tipSize * 2), 0, -tipSize);
                     vs[5].Color = color;
                 }
-                _device.RenderState.DepthBufferEnable = false;
-                _device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionColor));
+                _device.DepthStencilState.DepthBufferEnable = false;
+				//_device.RenderState.DepthBufferEnable = false;
+				//_device.VertexDeclaration = VertexDeclarationHelper.Get(typeof(VertexPositionColor));
                 _device.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.LineList, vs, 0, 3);
-                _device.RenderState.DepthBufferEnable = true;
+				_device.DepthStencilState.DepthBufferEnable=true;
+				//_device.RenderState.DepthBufferEnable = true;
 
-                pass.End();
+                //pass.End();
             }
-            _instruments.End();
+            //_instruments.End();
         }
         private bool IsBoatOnScreen(Vector2 b, IViewPort vp)
         {
@@ -1603,82 +1659,6 @@ namespace AmphibianSoftware.VisualSail.UI
         private Color DrawingToXnaColor(System.Drawing.Color from)
         {
             return new Color(from.R, from.G, from.B);
-        }
-        private void RenderVideoTitle()
-        {
-            System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(_xnaAviWriter.Buffer);
-            int width = _xnaAviWriter.Buffer.Width;
-            int height = _xnaAviWriter.Buffer.Height;
-            g.FillRectangle(System.Drawing.Brushes.Black, 0, 0, width, height);
-
-            float titleFontSize = 14;
-            int padding = 5;
-            System.Drawing.Font italic = new System.Drawing.Font("Arial", titleFontSize, System.Drawing.FontStyle.Italic);
-            System.Drawing.Font bold = new System.Drawing.Font("Arial", titleFontSize, System.Drawing.FontStyle.Bold);
-            System.Drawing.Font regular = new System.Drawing.Font("Arial", titleFontSize, System.Drawing.FontStyle.Regular);
-            System.Drawing.SizeF visualSize = g.MeasureString("visual", italic);
-            System.Drawing.SizeF sailSize = g.MeasureString("Sail", bold);
-            System.Drawing.SizeF dotComSize = g.MeasureString(".com", regular);
-            int titleOffset = (width - (int)(visualSize.Width + sailSize.Width + dotComSize.Width)) / 2;
-            g.DrawString("visual", italic, System.Drawing.Brushes.White, titleOffset, height - (visualSize.Height + padding));
-            g.DrawString("Sail", bold, System.Drawing.Brushes.White, titleOffset + visualSize.Width - padding, height - (visualSize.Height + padding));
-            g.DrawString(".com", regular, System.Drawing.Brushes.White, titleOffset + visualSize.Width + sailSize.Width - padding - padding, height - (visualSize.Height + padding));
-
-            int heightOffset = (int)((double)height * 0.4);
-
-            float raceNameFontSize = 30;
-            if (Replay.Race.Name != Race.DefaultName)
-            {
-                System.Drawing.Font raceNameFont = null;
-                System.Drawing.SizeF raceNameSize = new System.Drawing.SizeF();
-                do
-                {
-                    raceNameFont = new System.Drawing.Font("Arial", raceNameFontSize, System.Drawing.FontStyle.Regular);
-                    raceNameSize = g.MeasureString(Replay.Race.Name, raceNameFont);
-                    raceNameFontSize = raceNameFontSize - 2;
-                }
-                while ((raceNameSize.Width > width) && raceNameFontSize > 16f);
-                g.DrawString(Replay.Race.Name, raceNameFont, System.Drawing.Brushes.White, (width - (int)raceNameSize.Width) / 2, heightOffset);
-                heightOffset = heightOffset + (int)raceNameSize.Height + padding;
-            }
-
-            float lakeNameFontSize = raceNameFontSize / 2;
-            if (Replay.Race.Lake.Name != Lake.DefaultName)
-            {
-                System.Drawing.Font lakeNameFont = null;
-                System.Drawing.SizeF lakeNameSize = new System.Drawing.SizeF();
-                do
-                {
-                    lakeNameFont = new System.Drawing.Font("Arial", lakeNameFontSize, System.Drawing.FontStyle.Regular);
-                    lakeNameSize = g.MeasureString(Replay.Race.Lake.Name, lakeNameFont);
-                    lakeNameFontSize = lakeNameFontSize - 2;
-                }
-                while ((lakeNameSize.Width > width) && lakeNameFontSize > 16f);
-                g.DrawString(Replay.Race.Lake.Name, lakeNameFont, System.Drawing.Brushes.White, (width - (int)lakeNameSize.Width) / 2, heightOffset);
-                heightOffset = heightOffset + (int)lakeNameSize.Height + padding;
-            }
-
-            float raceDateFontSize = lakeNameFontSize;
-            System.Drawing.Font raceDateFont = null;
-            System.Drawing.SizeF raceDateSize = new System.Drawing.SizeF();
-            do
-            {
-                raceDateFont = new System.Drawing.Font("Arial", raceDateFontSize, System.Drawing.FontStyle.Regular);
-                raceDateSize = g.MeasureString(Replay.Race.LocalStart.ToShortDateString(), raceDateFont);
-                raceDateFontSize = raceDateFontSize - 2;
-            }
-            while ((raceDateSize.Width > width) && raceDateFontSize > 16f);
-            g.DrawString(Replay.Race.LocalStart.ToShortDateString(), raceDateFont, System.Drawing.Brushes.White, (width - (int)raceDateSize.Width) / 2, heightOffset);
-            heightOffset = heightOffset + (int)raceDateSize.Height + padding;
-
-            g.Flush();
-            _xnaAviWriter.CommitBufferChanges();
-            //record for 2 seconds
-            for (int i = 0; i < _xnaAviWriter.FrameRate * 2; i++)
-            {
-                _xnaAviWriter.RepeatBuffer();
-            }
-
         }
     }
 }

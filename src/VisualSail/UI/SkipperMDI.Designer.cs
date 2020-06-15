@@ -108,7 +108,7 @@
             // 
             // newToolStripMenuItem
             // 
-            this.newToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.add;
+			this.newToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("add.png");
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.newToolStripMenuItem.Text = "New Series";
@@ -116,7 +116,7 @@
             // 
             // newSeriesFromGPSFilesToolStripMenuItem
             // 
-            this.newSeriesFromGPSFilesToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.chart_line;
+			this.newSeriesFromGPSFilesToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("chart_line.png");
             this.newSeriesFromGPSFilesToolStripMenuItem.Name = "newSeriesFromGPSFilesToolStripMenuItem";
             this.newSeriesFromGPSFilesToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.newSeriesFromGPSFilesToolStripMenuItem.Text = "New Series From GPS Files...";
@@ -124,7 +124,7 @@
             // 
             // openToolStripMenuItem
             // 
-            this.openToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.filebrowse;
+			this.openToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("folder_explore.png");
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
             this.openToolStripMenuItem.Text = "Open Series...";
@@ -182,7 +182,7 @@
             // racesToolStripMenuItem
             // 
             this.racesToolStripMenuItem.Enabled = false;
-            this.racesToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.pencil;
+			this.racesToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("pencil.png");
             this.racesToolStripMenuItem.Name = "racesToolStripMenuItem";
             this.racesToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.racesToolStripMenuItem.Text = "Race";
@@ -191,7 +191,7 @@
             // seriesToolStripMenuItem
             // 
             this.seriesToolStripMenuItem.Enabled = false;
-            this.seriesToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.pencil;
+			this.seriesToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("pencil.png");
             this.seriesToolStripMenuItem.Name = "seriesToolStripMenuItem";
             this.seriesToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.seriesToolStripMenuItem.Text = "Series";
@@ -213,7 +213,7 @@
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.Enabled = false;
-            this.viewToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.monitor;
+			this.viewToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("monitor.png");
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.viewToolStripMenuItem.Text = "View";
@@ -222,7 +222,7 @@
             // statisticsToolStripMenuItem
             // 
             this.statisticsToolStripMenuItem.Enabled = false;
-            this.statisticsToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.table;
+			this.statisticsToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("table.png");
             this.statisticsToolStripMenuItem.Name = "statisticsToolStripMenuItem";
             this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.statisticsToolStripMenuItem.Text = "Statistics";
@@ -231,7 +231,7 @@
             // timeControlToolStripMenuItem
             // 
             this.timeControlToolStripMenuItem.Enabled = false;
-            this.timeControlToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.clock;
+			this.timeControlToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("clock.png");
             this.timeControlToolStripMenuItem.Name = "timeControlToolStripMenuItem";
             this.timeControlToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.timeControlToolStripMenuItem.Text = "Playback Control";
@@ -240,7 +240,7 @@
             // bookmarksToolStripMenuItem
             // 
             this.bookmarksToolStripMenuItem.Enabled = false;
-            this.bookmarksToolStripMenuItem.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.book_open;
+			this.bookmarksToolStripMenuItem.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("book_open.png");
             this.bookmarksToolStripMenuItem.Name = "bookmarksToolStripMenuItem";
             this.bookmarksToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.bookmarksToolStripMenuItem.Text = "Bookmarks";
@@ -380,7 +380,7 @@
             dockPaneStripToolWindowGradient1.InactiveTabGradient = tabGradient7;
             dockPaneStripSkin1.ToolWindowGradient = dockPaneStripToolWindowGradient1;
             dockPanelSkin1.DockPaneStripSkin = dockPaneStripSkin1;
-            this.mainDP.Skin = dockPanelSkin1;
+            //this.mainDP.Skin = dockPanelSkin1; //TODO: use theme
             this.mainDP.TabIndex = 3;
             // 
             // gpsOpenFD
@@ -398,7 +398,7 @@
             this.ClientSize = new System.Drawing.Size(792, 566);
             this.Controls.Add(this.mainDP);
             this.Controls.Add(this.mainMenuStrip);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "SkipperMDI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

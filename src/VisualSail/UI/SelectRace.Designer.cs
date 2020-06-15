@@ -37,7 +37,7 @@
             this.newBTN = new System.Windows.Forms.Button();
             this.openBTN = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.photoBTN = new System.Windows.Forms.Button();
+            //this.photoBTN = new System.Windows.Forms.Button();
             this.playBTN = new System.Windows.Forms.Button();
             this.cancelBTN = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -86,7 +86,7 @@
             // newBTN
             // 
             this.newBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.newBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.add;
+			this.newBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("add.png");
             this.newBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.newBTN.Location = new System.Drawing.Point(0, 0);
             this.newBTN.Name = "newBTN";
@@ -100,7 +100,7 @@
             // 
             this.openBTN.Dock = System.Windows.Forms.DockStyle.Right;
             this.openBTN.Enabled = false;
-            this.openBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.pencil;
+			this.openBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("pencil.png");
             this.openBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.openBTN.Location = new System.Drawing.Point(100, 0);
             this.openBTN.Name = "openBTN";
@@ -114,7 +114,7 @@
             // 
             this.panel1.Controls.Add(this.newBTN);
             this.panel1.Controls.Add(this.openBTN);
-            this.panel1.Controls.Add(this.photoBTN);
+            //this.panel1.Controls.Add(this.photoBTN);
             this.panel1.Controls.Add(this.playBTN);
             this.panel1.Controls.Add(this.cancelBTN);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -125,23 +125,23 @@
             // 
             // photoBTN
             // 
-            this.photoBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.photoBTN.Enabled = false;
-            this.photoBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.photos;
-            this.photoBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.photoBTN.Location = new System.Drawing.Point(200, 0);
-            this.photoBTN.Name = "photoBTN";
-            this.photoBTN.Size = new System.Drawing.Size(100, 23);
-            this.photoBTN.TabIndex = 5;
-            this.photoBTN.Text = "Photos";
-            this.photoBTN.UseVisualStyleBackColor = true;
-            this.photoBTN.Click += new System.EventHandler(this.photoBTN_Click);
+//            this.photoBTN.Dock = System.Windows.Forms.DockStyle.Right;
+//            this.photoBTN.Enabled = false;
+//			this.photoBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("photos.png");
+//            this.photoBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+//            this.photoBTN.Location = new System.Drawing.Point(200, 0);
+//            this.photoBTN.Name = "photoBTN";
+//            this.photoBTN.Size = new System.Drawing.Size(100, 23);
+//            this.photoBTN.TabIndex = 5;
+//            this.photoBTN.Text = "Photos";
+//            this.photoBTN.UseVisualStyleBackColor = true;
+//            this.photoBTN.Click += new System.EventHandler(this.photoBTN_Click);
             // 
             // playBTN
             // 
             this.playBTN.Dock = System.Windows.Forms.DockStyle.Right;
             this.playBTN.Enabled = false;
-            this.playBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.resultset_next;
+			this.playBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("resultset_next.png");
             this.playBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.playBTN.Location = new System.Drawing.Point(300, 0);
             this.playBTN.Name = "playBTN";
@@ -154,7 +154,7 @@
             // cancelBTN
             // 
             this.cancelBTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.cancelBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.cancel;
+			this.cancelBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("cancel.png");
             this.cancelBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cancelBTN.Location = new System.Drawing.Point(400, 0);
             this.cancelBTN.Name = "cancelBTN";
@@ -172,7 +172,7 @@
             this.Controls.Add(this.raceLV);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            //this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(516, 34);
@@ -197,6 +197,6 @@
         private System.Windows.Forms.Button cancelBTN;
         private System.Windows.Forms.Button playBTN;
         private System.Windows.Forms.ColumnHeader boatsCH;
-        private System.Windows.Forms.Button photoBTN;
+        //private System.Windows.Forms.Button photoBTN;
     }
 }

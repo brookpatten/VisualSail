@@ -117,7 +117,7 @@
             // okBTN
             // 
             this.okBTN.Enabled = false;
-            this.okBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.accept;
+			this.okBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("accept.png");
             this.okBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.okBTN.Location = new System.Drawing.Point(160, 107);
             this.okBTN.Name = "okBTN";
@@ -129,7 +129,7 @@
             // 
             // cancelBTN
             // 
-            this.cancelBTN.Image = global::AmphibianSoftware.VisualSail.Properties.Resources.cancel;
+			this.cancelBTN.Image = AmphibianSoftware.VisualSail.Library.EmbeddedResourceHelper.LoadImage("cancel.png");
             this.cancelBTN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cancelBTN.Location = new System.Drawing.Point(266, 107);
             this.cancelBTN.Name = "cancelBTN";

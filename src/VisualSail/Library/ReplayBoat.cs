@@ -14,21 +14,15 @@ using Microsoft.Xna.Framework;
 using AmphibianSoftware.VisualSail.Data;
 using AmphibianSoftware.VisualSail.Data.Statistics;
 using AmphibianSoftware.VisualSail.Library;
-using AmphibianSoftware.VisualSail.PostBuild;
 
 namespace AmphibianSoftware.VisualSail.Library
 {
     public class ReplayBoat:Boat
     {
-        [DoNotObfuscate()]
         private enum InstrumentDrawing { Line, InwardArrow, OutwardArrow };
-        [DoNotObfuscate()]
         public enum RacingStatus { Starting, Racing, Finished, NotRacing };
-        [DoNotObfuscate()]
         public enum BoatDirection {Forward,Backwards};
-        [DoNotObfuscate()]
         public enum CourseDirection { Upwind, Downwind };
-        [DoNotObfuscate()]
         public enum PointOfSail { Irons, CloseHauled, BeamReach, BroadReach, Running };
         //private BasicEffect sailEffect;
         //private BasicEffect hudEffect;
@@ -1385,7 +1379,6 @@ namespace AmphibianSoftware.VisualSail.Library
     }
     public class Tack
     {
-        [DoNotObfuscate()]
         public enum TackDirection { Undetermined, Port, Starboard };
         public TackDirection Direction;
         public int Index;

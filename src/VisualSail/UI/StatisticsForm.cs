@@ -461,6 +461,10 @@ namespace AmphibianSoftware.VisualSail.UI
             {
                 return ((DateTime)val).ToString("HH:mm:ss");
             }
+            else if (val.GetType() == typeof(TimeSpan))
+            {
+                return ((TimeSpan)val).ToString();
+            }
             else
             {
                 return string.Format("{0:0.##}", val);
